@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file_data.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 17:14:46 by jpluta            #+#    #+#             */
-/*   Updated: 2025/09/08 16:55:19 by huahmad          ###   ########.fr       */
+/*   Updated: 2025/09/08 19:21:09 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	check_and_process_file(char *p_to_file, t_data *data)
 {
-	int	*file;
+	int		file;
 	char	*line;
 
-	file = open(p_to_file, "r");
+	file = open(p_to_file, O_RDONLY);
 	if (!file)
 	{
 		perror("Error opening file");
@@ -29,7 +29,7 @@ int	check_and_process_file(char *p_to_file, t_data *data)
 		process_line(line, data);
 		line = get_next_line(file);
 	}
-	fclose(file);
+	close(file);
 	return (0);
 }
 
@@ -53,23 +53,30 @@ void	extract_data(char *line, t_data *data, int *i)
 	if (line[*i] && (ft_strncmp(&line[*i], "NO", 2) == 1))
 	{
 		*i += 2;
-		data->path_to_the_north_texture = ft_strdup(skip_empty_spaces(&line[*i],
-					i));
+		data->path_to_the_north_texture = skip_empty_spaces(&line[*i], i);
+		if (test_if_openable(data->path_to_the_north_texture))
+			data->valid_file_data.NO_path_to_the_north_texture = 1;
 	}
 	else if (line[*i] && (ft_strncmp(&line[*i], "SO", 2) == 1))
 	{
 		*i += 2;
 		data->path_to_the_south_texture = skip_empty_spaces(&line[*i], i);
+		if (test_if_openable(data->path_to_the_south_texture))
+			data->valid_file_data.SO_path_to_the_south_texture = 1;
 	}
 	else if (line[*i] && (ft_strncmp(&line[*i], "WE", 2) == 1))
 	{
 		*i += 2;
 		data->path_to_the_west_texture = skip_empty_spaces(&line[*i], i);
+		if (test_if_openable(data->path_to_the_west_texture))
+			data->valid_file_data.WE_path_to_the_west_texture = 1;
 	}
 	else if (line[*i] && (ft_strncmp(&line[*i], "EA", 2) == 1))
 	{
 		*i += 2;
 		data->path_to_the_east_texture = skip_empty_spaces(&line[*i], i);
+		if (test_if_openable(data->path_to_the_east_texture))
+			data->valid_file_data.EA_path_to_the_east_texture = 1;
 	}
 	else if (line[*i] && (ft_strncmp(&line[*i], "F", 1) == 1))
 	{
@@ -80,6 +87,20 @@ void	extract_data(char *line, t_data *data, int *i)
 	{
 		*i += 1;
 		data->path_to_the_east_texture = skip_empty_spaces(&line[*i], i);
+	}
+}
+
+int	test_if_openable(char *path)
+{
+	int	fd;
+
+	fd = open(path, O_RDONLY);
+	if (fd != -1)
+		return (0);
+	else
+	{
+		close(fd);
+		return (1);
 	}
 }
 

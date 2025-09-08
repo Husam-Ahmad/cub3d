@@ -1,0 +1,8 @@
+        WE ./textures/3/WE.png
+SO ./textures/3/SO.png
+        NO      ./textures/3/NO.png
+
+        C   20, 	 30	,20  
+EA      ./textures/2/EA.png
+
+  F              31,32,30

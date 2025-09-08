@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emomkus <emomkus@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/19 14:32:37 by emomkus           #+#    #+#             */
-/*   Updated: 2021/05/22 21:13:36 by emomkus          ###   ########.fr       */
+/*   Created: 2024/05/26 13:33:09 by jpluta            #+#    #+#             */
+/*   Updated: 2024/05/30 20:33:45 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar_fd(char c, int fd)
+void	ft_putchar_fd(char c, int fd) // prida char do filu
 {
 	write(fd, &c, 1);
 }

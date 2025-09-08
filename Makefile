@@ -1,7 +1,7 @@
 # Variables
 NAME = cub3D	
 CC = cc
-CFLAGS = -Wall -Wextra -Werror 
+# CFLAGS = -Wall -Wextra -Werror 
 SRC = \
 main.c \
 parsing/parse_file_data.c \

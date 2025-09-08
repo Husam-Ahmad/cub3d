@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emomkus <emomkus@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/19 14:32:28 by emomkus           #+#    #+#             */
-/*   Updated: 2021/05/28 22:34:23 by emomkus          ###   ########.fr       */
+/*   Created: 2024/05/26 13:35:45 by jpluta            #+#    #+#             */
+/*   Updated: 2024/06/29 19:33:49 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,27 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	char	last_digit;
+	int	digit;
 
 	if (n == -2147483648)
-	{
 		write(fd, "-2147483648", 11);
-		return ;
-	}
-	if (n < 0)
+	else if (n < 0)
 	{
 		write(fd, "-", 1);
 		n = -n;
+		ft_putnbr_fd(n, fd);
 	}
-	if (n > 9)
+	else
 	{
-		ft_putnbr_fd(n / 10, fd);
+		if (n > 9)
+		{
+			ft_putnbr_fd(n / 10, fd);
+			ft_putnbr_fd(n % 10, fd);
+		}
+		else
+		{
+			digit = n + 48;
+			write(fd, &digit, 1);
+		}
 	}
-	last_digit = n % 10 + '0';
-	write(fd, &last_digit, 1);
 }

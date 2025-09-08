@@ -3,63 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emomkus <emomkus@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/19 14:32:40 by emomkus           #+#    #+#             */
-/*   Updated: 2021/05/28 16:09:38 by emomkus          ###   ########.fr       */
+/*   Created: 2024/05/30 20:41:58 by jpluta            #+#    #+#             */
+/*   Updated: 2025/02/23 15:37:19 by jozefpluta       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/*
-*malloc char string from integer
-*/
-static int	negativet(int n)
-{
-	if (n < 0)
-		return (1);
-	return (0);
-}
 
-static int	lenght(int n)
-{
-	int	i;
-
-	i = 0;
-	while (n != 0)
-	{
-		n = n / 10;
-		i++;
-	}
-	if (i == 0)
-		return (1);
-	return (i);
-}
+static char	*do_conversion(int n, int original_n, int digits, char *str);
 
 char	*ft_itoa(int n)
 {
-	unsigned int	nit;
-	char			*str;
-	char			num;
-	int				len;
-	int				index;
+	int		digits;
+	int		original_n;
+	char	*str;
 
-	index = negativet(n);
-	len = lenght(n);
-	str = malloc((len + 1 + index) * sizeof(char));
-	str[len + index] = 0;
-	if (index)
-		nit = (unsigned int)n * -1;
-	else
-		nit = (unsigned int)n;
-	while ((len + index) > (0 + index))
+	str = NULL;
+	digits = 0;
+	original_n = n;
+	if (n == 0)
 	{
-		len--;
-		num = (nit % 10) + 48;
-		nit = nit / 10;
-		str[len + index] = num;
+		str = malloc(2);
+		if (str == NULL)
+			return (NULL);
+		str[0] = '0';
+		str[1] = '\0';
+		return (str);
 	}
-	if (index)
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	return (do_conversion(n, original_n, digits, str));
+}
+
+static char	*do_conversion(int n, int original_n, int digits, char *str)
+{
+	while (original_n != 0)
+	{
+		original_n = original_n / 10;
+		digits++;
+	}
+	if (n < 0)
+		digits++;
+	str = (char *)malloc(digits + 1);
+	if (str == NULL)
+		return (NULL);
+	if (n < 0)
+	{
 		str[0] = '-';
+		n = n * (-1);
+	}
+	str[digits] = '\0';
+	digits--;
+	while (n != 0)
+	{
+		str[digits] = (n % 10) + '0';
+		n = n / 10;
+		digits--;
+	}
 	return (str);
 }

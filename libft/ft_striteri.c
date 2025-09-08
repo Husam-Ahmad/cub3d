@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emomkus <emomkus@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/25 22:21:55 by emomkus           #+#    #+#             */
-/*   Updated: 2022/01/17 16:40:11 by emomkus          ###   ########.fr       */
+/*   Created: 2024/05/26 13:32:36 by jpluta            #+#    #+#             */
+/*   Updated: 2024/05/30 20:34:08 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+		// aplikuje funkciu 'f' na string 's' zmeni ho priamo
 {
-	t_list	*new_element;
+	unsigned int	i;
 
-	new_element = malloc(sizeof(t_list));
-	if (!new_element)
-		return (NULL);
-	new_element->content = content;
-	new_element->next = NULL;
-	return (new_element);
+	i = 0;
+	if (!s || !f)
+		return ;
+	while (s[i] != '\0')
+	{
+		f(i, &s[i]);
+		i++;
+	}
 }
