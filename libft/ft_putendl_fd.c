@@ -3,21 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emomkus <emomkus@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/19 14:32:33 by emomkus           #+#    #+#             */
-/*   Updated: 2021/05/22 21:13:42 by emomkus          ###   ########.fr       */
+/*   Created: 2024/05/26 13:35:06 by jpluta            #+#    #+#             */
+/*   Updated: 2024/05/30 20:33:49 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putendl_fd(char *s, int fd)
+void	ft_putendl_fd(char *s, int fd) // prida text do filu nasledovany nulou
 {
-	while (*s)
+	size_t	i;
+
+	i = 0;
+	if (s == NULL)
+		return ;
+	while (s[i])
 	{
-		write(fd, &s[0], 1);
-		s++;
+		write(fd, &s[i], 1);
+		i++;
 	}
 	write(fd, "\n", 1);
 }

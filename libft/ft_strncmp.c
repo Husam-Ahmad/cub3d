@@ -3,33 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emomkus <emomkus@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/16 21:54:32 by emomkus           #+#    #+#             */
-/*   Updated: 2021/05/25 20:36:06 by emomkus          ###   ########.fr       */
+/*   Created: 2024/05/25 19:33:15 by jpluta            #+#    #+#             */
+/*   Updated: 2024/05/30 20:34:29 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/*
-*Compare characters of two strings
-*/
+
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int	comp;
-	int	i;
+	size_t				i;
+	const unsigned char	*ps1;
+	const unsigned char	*ps2;
 
 	i = 0;
+	ps1 = (const unsigned char *)s1;
+	ps2 = (const unsigned char *)s2;
 	if (n == 0)
 		return (0);
-	while (i < (int)n && s1[i] && s2[i])
+	while (*ps1 && *ps2 && i < n)
 	{
-		comp = s1[i] - s2[i];
-		if (comp != 0)
-			return (*(unsigned char *)(s1 + i) - *(unsigned char *)(s2 + i));
+		if (*ps1 != *ps2)
+			return (*ps1 - *ps2);
+		ps1++;
+		ps2++;
 		i++;
 	}
-	if (i == (int)n)
-		return (0);
-	return (*(unsigned char *)(s1 + i) - *(unsigned char *)(s2 + i));
+	if (i < n && (*ps1 || *ps2))
+		return (*ps1 - *ps2);
+	return (0);
 }

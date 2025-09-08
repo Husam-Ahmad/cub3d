@@ -3,43 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emomkus <emomkus@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/13 21:39:22 by emomkus           #+#    #+#             */
-/*   Updated: 2021/05/30 02:59:50 by emomkus          ###   ########.fr       */
+/*   Created: 2024/05/25 18:30:42 by jpluta            #+#    #+#             */
+/*   Updated: 2024/05/30 20:33:39 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/*
-*coppies to destination n amount contents of source
-*it does not allow to rewrite what is coppied 
-*/
+
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
 	size_t		i;
-	const char	*stmp;
-	char		*dtmp;
+	const char	*psrc;
+	char		*pdest;
 
-	stmp = (char *)src;
-	dtmp = (char *)dest;
-	if (dtmp < stmp)
+	psrc = (const char *)src;
+	pdest = (char *)dest;
+	i = 0;
+	if (pdest < psrc)
 	{
-		i = 0;
 		while (i < n)
 		{
-			dtmp[i] = stmp[i];
+			pdest[i] = psrc[i];
 			i++;
 		}
 	}
-	else if (dtmp > stmp)
+	if (pdest > psrc)
 	{
 		i = n;
 		while (i > 0)
 		{
-			dtmp[i - 1] = stmp[i - 1];
+			pdest[i - 1] = psrc[i - 1];
 			i--;
 		}
 	}
 	return (dest);
 }
+
+// int main(void)
+// {
+// 	char src[50] = "abcdefgh";
+// 	char dest[50] = "1234";
+// 	ft_memmove(dest, src, 9);
+// 	printf("%s", dest);
+
+// 	return (0);
+// }

@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emomkus <emomkus@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/27 03:06:58 by emomkus           #+#    #+#             */
-/*   Updated: 2021/05/27 20:19:01 by emomkus          ###   ########.fr       */
+/*   Created: 2025/04/26 12:38:00 by jpluta            #+#    #+#             */
+/*   Updated: 2025/04/26 12:40:19 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+char	*ft_strcpy(char *dest, const char *src)
 {
-	t_list	*ptr;
-
-	ptr = *lst;
-	if (ptr == NULL)
-	{
-		*lst = new;
-		return ;
-	}
-	while (ptr->next != NULL)
-		ptr = ptr->next;
-	ptr->next = new;
+    char	*ptr;
+	
+	ptr = dest;
+    while (*src)
+        *ptr++ = *src++;
+    *ptr = '\0';
+    return (dest);
 }

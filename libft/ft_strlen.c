@@ -3,23 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emomkus <emomkus@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/14 15:38:41 by emomkus           #+#    #+#             */
-/*   Updated: 2021/05/22 21:17:36 by emomkus          ###   ########.fr       */
+/*   Created: 2024/05/25 18:38:01 by jpluta            #+#    #+#             */
+/*   Updated: 2024/05/30 20:34:20 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/*
-*returns value of bytes in string
-*/
-size_t	ft_strlen(const char *s)
+
+size_t	ft_strlen(const char *s) // vrati dlzku stringu
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (s[i])
+	while (s[i] != '\0')
 	{
 		i++;
 	}

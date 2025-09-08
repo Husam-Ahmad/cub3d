@@ -3,40 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emomkus <emomkus@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/24 20:11:22 by emomkus           #+#    #+#             */
-/*   Updated: 2021/05/30 01:38:41 by emomkus          ###   ########.fr       */
+/*   Created: 2024/05/26 13:27:39 by jpluta            #+#    #+#             */
+/*   Updated: 2024/06/01 17:43:15 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/*
-*Returns a new string from string- starting on offset (start) and lenght of len
-*/
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	unsigned int	i;
-	int				j;
-	char			*str;
-	unsigned int	strl;
 
-	if (ft_strlen(s) < start)
+char	*ft_substr(char const *s, size_t start, size_t len)
+{
+	char	*ptr;
+	size_t	slen;
+
+	if (s == NULL)
+		return (NULL);
+	slen = ft_strlen(s);
+	if (start > slen)
 	{
-		str = malloc(sizeof(char));
-		str[0] = '\0';
-		return (str);
+		ptr = (char *)malloc(sizeof(char));
+		if (ptr == NULL)
+			return (NULL);
+		else
+		{
+			*ptr = '\0';
+			return (ptr);
+		}
 	}
-	else
-		strl = ft_strlen(s) - start;
-	if (len < strl)
-		str = (char *)malloc(sizeof(const char) * (len + 1));
-	else
-		str = (char *)malloc(sizeof(const char) * (strl + 1));
-	i = 0 + start;
-	j = 0;
-	while (s[i] && len--)
-		str[j++] = s[i++];
-	str[j] = 0;
-	return (str);
+	if (slen - start < len)
+		len = slen - start;
+	ptr = malloc(len + 1);
+	if (ptr == NULL)
+		return (NULL);
+	ft_memcpy(ptr, s + start, len);
+	ptr[len] = '\0';
+	return (ptr);
 }

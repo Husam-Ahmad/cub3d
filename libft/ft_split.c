@@ -3,62 +3,132 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emomkus <emomkus@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/19 14:32:20 by emomkus           #+#    #+#             */
-/*   Updated: 2021/06/01 16:42:22 by emomkus          ###   ########.fr       */
+/*   Created: 2024/05/26 13:29:40 by jpluta            #+#    #+#             */
+/*   Updated: 2025/02/23 15:35:02 by jozefpluta       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/*
-*returns strings that are delimited by c
-*/
-static int	countingstrings(char const *s, char c)
-{
-	size_t	i;
-	int		result;
+#include <stdlib.h>
 
-	result = 0;
-	i = 0;
-	while (i < ft_strlen(s))
-	{
-		if (s[i] != c)
-		{
-			while (s[i + 1] != c && s[i + 1] != '\0')
-				i++;
-			result++;
-		}
-		i++;
-	}
-	return (result);
-}
+char			**ft_split(char const *s, char c);
+static void		create_new_arr(char const *s, char **str, char c);
+static int		*alloc_mem_substrings(char const *s, char **str, char c);
+static size_t	get_len_of_substring(char const *s, size_t i, char c);
+static size_t	get_num_of_strings(char const *s, char c);
 
 char	**ft_split(char const *s, char c)
 {
-	char	**result;
-	size_t	start;
+	size_t	substr_num;
+	char	**str;
+
+	if (s == NULL)
+		return (NULL);
+	substr_num = get_num_of_strings(s, c);
+	if (substr_num == 0)
+		return (ft_calloc(1, sizeof(char *)));
+	str = ft_calloc((substr_num + 1), sizeof(char *));
+	if (str == NULL)
+		return (NULL);
+	alloc_mem_substrings(s, str, c);
+	create_new_arr(s, str, c);
+	return (str);
+}
+
+static void	create_new_arr(char const *s, char **str, char c)
+{
 	size_t	i;
-	int		j;
+	size_t	y;
+	size_t	x;
+	size_t	substr_len;
 
 	i = 0;
-	start = 0;
-	j = 0;
-	result = malloc(sizeof(char *) * (countingstrings(s, c) + 1));
-	if (!result)
-		return (0);
-	while (i < ft_strlen(s))
+	y = 0;
+	x = 0;
+	while (s[i] != '\0')
 	{
-		if (s[i] != c)
+		while (s[i] == c && s[i] != '\0')
+			i++;
+		if (s[i] == '\0')
+			break ;
+		substr_len = get_len_of_substring(s, i, c);
+		y = -1;
+		while (++y < substr_len)
 		{
-			while (s[i + 1] != c && s[i + 1] != '\0')
-				i++;
-			result[j] = malloc(sizeof(char) * (i - start + 2));
-			ft_strlcpy(result[j++], &s[start], i - start + 2);
+			str[x][y] = s[i];
+			i++;
 		}
-		i++;
-		start = i;
+		str[x][y] = '\0';
+		x++;
 	}
-	result[j] = NULL;
-	return (result);
+	str[x] = NULL;
 }
+
+static int	*alloc_mem_substrings(char const *s, char **str, char c)
+{
+	size_t	i;
+	size_t	y;
+	size_t	x;
+
+	i = 0;
+	y = 0;
+	x = 0;
+	while (s[i] != '\0')
+	{
+		while (s[i] == c)
+			i++;
+		y = get_len_of_substring(s, i, c);
+		str[x] = ft_calloc((y + 1), sizeof(char));
+		if (str[x] == NULL)
+			return (NULL);
+		i = i + y;
+		if (s[i] != '\0')
+			x++;
+	}
+	return (0);
+}
+
+static size_t	get_len_of_substring(char const *s, size_t i, char c)
+{
+	size_t	len;
+
+	len = 0;
+	while ((s[i] != c) && (s[i] != '\0'))
+	{
+		i++;
+		len++;
+	}
+	return (len);
+}
+
+static size_t	get_num_of_strings(char const *s, char c)
+{
+	size_t	n;
+
+	n = 0;
+	while (*s)
+	{
+		while (*s == c && *s)
+			s++;
+		if (*s != c && *s)
+		{
+			n++;
+			while (*s != c && *s)
+				s++;
+		}
+	}
+	return (n);
+}
+
+// int main(void)
+// {
+// 	char *str = "ahoj ako sa mas";
+// 	char **istr = ft_split(str, 0);
+// 	printf ("%s\n", istr[0]);
+// 	printf ("%s\n", istr[1]);
+// 	printf ("%s\n", istr[2]);
+// 	// printf ("%s\n", istr[3]);
+// 	return (0);
+// }

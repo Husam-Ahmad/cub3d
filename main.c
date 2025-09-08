@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 12:38:52 by jpluta            #+#    #+#             */
-/*   Updated: 2025/09/08 17:16:06 by huahmad          ###   ########.fr       */
+/*   Updated: 2025/09/08 19:13:24 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	// data = init_t_data();
 	if (argc != 2)
 	{
 		ft_putstr_fd("Wrong input\n", 1);
@@ -25,8 +24,14 @@ int	main(int argc, char **argv)
 	else if (!is_file_name_valid(argv[1]))
 		return (1);
 	ft_bzero(&data, sizeof(t_data));
-	construct_data(&data, argv);
 	check_and_process_file(argv[1], &data);
+	printf("%d\n", data.valid_file_data.EA_path_to_the_east_texture);
+	printf("%d\n", data.valid_file_data.NO_path_to_the_north_texture);
+	printf("%d\n", data.valid_file_data.SO_path_to_the_south_texture);
+	printf("%d\n", data.valid_file_data.WE_path_to_the_west_texture);
+	printf("%d\n", data.valid_file_data.C);
+	printf("%d\n", data.valid_file_data.F);
+	// construct_data(&data, argv);
 	return (0);
 }
 
@@ -47,4 +52,12 @@ int	is_file_name_valid(char *file_name)
 	}
 	else
 		return (1);
+}
+
+t_valid_file_data	init_valid_file_data(void)
+{
+	t_valid_file_data	default_data;
+
+	ft_bzero(&default_data, sizeof(t_valid_file_data));
+	return (default_data);
 }

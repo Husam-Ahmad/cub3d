@@ -3,21 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emomkus <emomkus@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/17 10:34:39 by emomkus           #+#    #+#             */
-/*   Updated: 2022/01/13 16:35:23 by emomkus          ###   ########.fr       */
+/*   Created: 2024/05/26 13:24:53 by jpluta            #+#    #+#             */
+/*   Updated: 2024/05/30 20:35:00 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/*
-*These functions convert lowercase letters to uppercase, and vice versa
-*/
+
 int	ft_toupper(int c)
 {
-	if (c > 96 && c <= 122)
+	if (c >= 'a' && c <= 'z')
 		return (c - 32);
-	else
-		return (c);
+	return (c);
 }

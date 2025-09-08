@@ -3,21 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emomkus <emomkus@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/17 10:42:31 by emomkus           #+#    #+#             */
-/*   Updated: 2022/01/13 16:20:07 by emomkus          ###   ########.fr       */
+/*   Created: 2024/05/26 13:25:16 by jpluta            #+#    #+#             */
+/*   Updated: 2024/05/30 20:34:56 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/*
-*Convert uppercase letter to lowercase
-*/
+
 int	ft_tolower(int c)
 {
-	if (c > 64 && c <= 90)
+	if (c >= 'A' && c <= 'Z')
 		return (c + 32);
-	else
-		return (1);
+	return (c);
 }

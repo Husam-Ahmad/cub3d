@@ -3,36 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emomkus <emomkus@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/17 10:08:01 by emomkus           #+#    #+#             */
-/*   Updated: 2021/05/22 21:02:11 by emomkus          ###   ########.fr       */
+/*   Created: 2024/05/25 19:34:47 by jpluta            #+#    #+#             */
+/*   Updated: 2024/06/01 13:12:59 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/*
-*convert a string to an integer
-*/
-int	ft_atoi(const char *str)
-{
-	unsigned int	num;
-	int				i;
-	int				np;
 
-	np = 1;
+static int	find_int(const char *pstr, int i);
+
+int	ft_atoi(const char *str) // char to int convertor
+{
+	int			i;
+	int			sign;
+	int			num;
+	const char	*pstr;
+
 	i = 0;
 	num = 0;
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\f'
-		|| str[i] == '\r' || str[i] == '\n' || str[i] == '\v')
-		i++;
-	if (str[i] == '+' || str[i] == '-')
-		if (str[i++] == '-')
-			np = -1;
-	while (str[i] >= '0' && str[i] <= '9')
+	sign = 1;
+	pstr = (const char *)str;
+	i = find_int(pstr, i);
+	if (pstr[i] != '\0' && pstr[i] == '-')
 	{
-		num = num * 10 + (str[i] - '0');
+		sign = -1;
 		i++;
 	}
-	return ((int)(np * num));
+	else if (pstr[i] == '+')
+		i++;
+	while (pstr[i] != '\0' && pstr[i] >= '0' && pstr[i] <= '9')
+	{
+		num = num * 10 + (pstr[i] - '0');
+		i++;
+	}
+	return (num * sign);
+}
+
+static int	find_int(const char *pstr, int i)
+{
+	while (pstr[i] != '\0' && (pstr[i] == ' ' || pstr[i] == '\t'
+			|| pstr[i] == '\n' || pstr[i] == '\r' || pstr[i] == '\v'
+			|| pstr[i] == '\f'))
+		i++;
+	return (i);
 }

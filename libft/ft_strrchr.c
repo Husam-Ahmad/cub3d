@@ -3,38 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emomkus <emomkus@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/15 01:54:36 by emomkus           #+#    #+#             */
-/*   Updated: 2021/05/24 00:45:45 by emomkus          ###   ########.fr       */
+/*   Created: 2024/05/25 19:10:41 by jpluta            #+#    #+#             */
+/*   Updated: 2024/05/30 20:34:35 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 char	*ft_strrchr(const char *s, int c)
+// vrati pointer posledneho vyskytu 'c' charakteru
 {
-	int	i;
-	int	temp;
+	size_t				i;
+	const unsigned char	*ps;
+	char				*result;
+	unsigned char		nc;
 
 	i = 0;
-	temp = 0;
-	while (s[i] != 0)
+	ps = (const unsigned char *)s;
+	result = NULL;
+	nc = (unsigned char)c;
+	while (ps[i] != '\0')
 	{
-		if (s[i] == (char)c)
+		if (ps[i] == nc)
 		{
-			temp = i + 1;
+			result = (char *)&ps[i];
 		}
 		i++;
 	}
-	if (temp)
-	{
-		temp--;
-		return ((char *)&s[temp]);
-	}
-	if (c == '\0')
-	{
-		return ((char *)&s[i]);
-	}
-	return (0);
+	if (nc == '\0')
+		return ((char *)&ps[i]);
+	return ((char *)result);
 }

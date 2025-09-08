@@ -3,30 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emomkus <emomkus@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/17 10:45:49 by emomkus           #+#    #+#             */
-/*   Updated: 2021/05/30 02:57:18 by emomkus          ###   ########.fr       */
+/*   Created: 2024/05/26 13:25:48 by jpluta            #+#    #+#             */
+/*   Updated: 2024/06/08 17:38:28 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/*
-*Allocates amount members nmemb of size bytes long and bezeros
-*/
-void	*ft_calloc(size_t nmemb, size_t size)
-{
-	char	*ptr;
-	size_t	i;
+#include <stdio.h>
 
-	ptr = malloc(nmemb * size);
-	if (ptr == NULL)
-		return (NULL);
-	i = 0;
-	while (i < nmemb * size)
+void	*ft_calloc(size_t nelem, size_t elsize)
+{
+	void	*ptr;
+	size_t	total_size;
+
+	total_size = nelem * elsize;
+	if (nelem <= 0 || elsize <= 0)
 	{
-		ptr[i] = 0;
-		i++;
+		ptr = malloc(0);
+		return (ptr);
 	}
-	return ((void *)ptr);
+	if (total_size / elsize != nelem)
+		return (NULL);
+	ptr = malloc(nelem * elsize);
+	if (!ptr)
+		return (NULL);
+	ft_memset(ptr, 0, total_size);
+	return (ptr);
 }
+/* alokuje unused space pre array 'nelem'entov kde velkost
+jedneho je 'elsize' */

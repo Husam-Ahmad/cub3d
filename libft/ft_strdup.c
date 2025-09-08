@@ -3,29 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emomkus <emomkus@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/17 13:16:39 by emomkus           #+#    #+#             */
-/*   Updated: 2021/05/22 21:32:44 by emomkus          ###   ########.fr       */
+/*   Created: 2024/05/26 13:26:45 by jpluta            #+#    #+#             */
+/*   Updated: 2024/05/30 20:34:04 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/*
-* Dublicates string
-*/
-char	*ft_strdup(const char *s)
-{
-	char	*snew;
-	int		i;
 
-	snew = malloc(sizeof(char) * (ft_strlen(s) + 1));
-	i = 0;
-	while (s[i])
-	{
-		snew[i] = s[i];
-		i++;
-	}
-	snew[i] = '\0';
-	return (snew);
+char	*ft_strdup(const char *s)
+		// duplikuje string a alokuje miesto v pamati pomocou  malloc
+{
+	size_t	slen;
+	char	*newstr;
+
+	slen = ft_strlen(s) + 1;
+	if (s == NULL)
+		return (NULL);
+	newstr = malloc(slen);
+	if (newstr == NULL)
+		return (NULL);
+	ft_strlcpy(newstr, s, slen);
+	return (newstr);
 }

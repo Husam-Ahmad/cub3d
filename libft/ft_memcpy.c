@@ -3,30 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emomkus <emomkus@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/13 00:52:25 by emomkus           #+#    #+#             */
-/*   Updated: 2021/05/28 23:38:43 by emomkus          ###   ########.fr       */
+/*   Created: 2024/05/25 18:24:59 by jpluta            #+#    #+#             */
+/*   Updated: 2024/06/29 16:15:37 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/*
-*coppies to destination n amount contents of source
-*/
-void	*ft_memcpy(void *dest, const void *src, size_t n)
-{
-	const char	*stmp;
-	char		*dtmp;
 
-	dtmp = dest;
-	stmp = src;
-	while (n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	size_t			i;
+	unsigned char	*dest;
+	unsigned char	*srce;
+
+	dest = (unsigned char *)dst;
+	srce = (unsigned char *)src;
+	if (!dst && !src)
+		return (NULL);
+	i = 0;
+	while (i < n)
 	{
-		*dtmp = *stmp;
-		dtmp++;
-		stmp++;
-		n--;
+		dest[i] = srce[i];
+		i++;
 	}
-	return (dest);
+	return ((void *)dest);
 }
+
+// int	main(void)
+// {
+// 	char	dest[50];
+
+// 	strncpy(dest, "XXXXXXXXXXXXXXXXXX", sizeof(dest));
+// 	ft_memcpy(dest, NULL, 15);
+// 	printf("Test 1: %s\n", dest);
+// 	return (0);
+// }
