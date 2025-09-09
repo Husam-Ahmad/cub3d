@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 12:38:52 by jpluta            #+#    #+#             */
-/*   Updated: 2025/09/08 19:13:24 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/09/09 17:20:03 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,7 @@ int	main(int argc, char **argv)
 	else if (!is_file_name_valid(argv[1]))
 		return (1);
 	ft_bzero(&data, sizeof(t_data));
-	check_and_process_file(argv[1], &data);
-	printf("%d\n", data.valid_file_data.EA_path_to_the_east_texture);
-	printf("%d\n", data.valid_file_data.NO_path_to_the_north_texture);
-	printf("%d\n", data.valid_file_data.SO_path_to_the_south_texture);
-	printf("%d\n", data.valid_file_data.WE_path_to_the_west_texture);
-	printf("%d\n", data.valid_file_data.C);
-	printf("%d\n", data.valid_file_data.F);
+	check_file_data(argv[1], &data);
 	// construct_data(&data, argv);
 	return (0);
 }

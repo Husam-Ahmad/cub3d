@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 16:51:22 by jpluta            #+#    #+#             */
-/*   Updated: 2025/09/08 17:51:31 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/09/09 17:09:58 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 // bool is_enclosed(char map[ROWS][COLS + 1], bool visited[ROWS][COLS], int row, int col) {
 //     // If out of bounds — invalid
 //     if (row < 0 || row >= ROWS || col < 0 || col >= COLS) {
-//         return false;
+//         return (false);
 //     }
 
 //     // If wall — safe
 //     if (map[row][col] == '1') {
-//         return true;
+//         return (true);
 //     }
 
 //     // If already visited — skip
 //     if (visited[row][col]) {
-//         return true;
+//         return (true);
 //     }
 
 //     // Mark as visited
@@ -37,10 +37,16 @@
 //     bool left  = is_enclosed(map, visited, row, col - 1);
 //     bool right = is_enclosed(map, visited, row, col + 1);
 
-//     return up && down && left && right;
+//     return (up && down && left && right);
 // }
 
-// bool is_enclosed(char map[ROWS][COLS + 1], bool visited[ROWS][COLS], int row, int col)
-// {
-	
+// bool visited[ROWS][COLS] = { false };
+// if (!is_enclosed(map, visited, player_row, player_col)) {
+//     // The map is NOT valid
+//     printf("Map is invalid: it's not fully enclosed!\n");
+//     return false;
+// } else {
+//     // The map is valid
+//     printf("Map is valid: fully enclosed from player's position.\n");
+//     return true;
 // }
