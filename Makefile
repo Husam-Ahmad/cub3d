@@ -1,49 +1,62 @@
-# Variables
-NAME = cub3D	
-CC = cc
-# CFLAGS = -Wall -Wextra -Werror 
-SRC = \
-main.c \
-parsing/check_file_data.c \
-parsing/process_file_data.c \
-parsing/parsing_utils.c \
-construct/constructor.c \
+# Project
+NAME	= cub3D
+CC		= cc
+CFLAGS	= -Wall -Wextra -Werror
+CPPFLAGS= -I minilibx-linux -I libft
+LDLIBS	= -lm -lX11 -lXext
 
-OBJ = $(SRC:.c=.o)
+LIBFT_DIR	= libft
+MLX_DIR		= minilibx-linux
 
-LIBFT_DIR = libft
-LIBFT = $(LIBFT_DIR)/libft.a
+# Libs
+LIBFT		= $(LIBFT_DIR)/libft.a
+MLX			= $(MLX_DIR)/libmlx_Linux.a
 
-EXEC = cub3D
+# Sources
+SRC := \
+  main.c \
+  parsing/check_file_data.c \
+  parsing/process_file_data.c \
+  parsing/parsing_utils.c \
+  construct/constructor.c
+
+OBJ := $(SRC:.c=.o)
 
 # Default target
-all: $(LIBFT) $(EXEC)
+all: $(NAME)
 
-# Link object files to create the executable
-$(EXEC): $(OBJ)
-	$(CC) $(OBJ) $(LIBFT) -o $(EXEC)
+# Link
+$(NAME): $(OBJ) $(LIBFT) $(MLX)
+	$(CC) $(OBJ) $(LIBFT) $(MLX) $(LDFLAGS) $(LDLIBS) -o $@
 
-# Compile .c files into .o files
+# Compile
 %.o: %.c
-	$(CC) $(CFLAGS) -c -g $< -o $@
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
+# Build libft
 $(LIBFT):
-	make -C $(LIBFT_DIR)
+	$(MAKE) -C $(LIBFT_DIR)
 
-# Clean up generated files
+# Build mlx (linux)
+$(MLX):
+	$(MAKE) -C $(MLX_DIR)
+
+# Clean objects
 clean:
 	rm -f $(OBJ)
-	make -C $(LIBFT_DIR) clean
+	$(MAKE) -C $(LIBFT_DIR) clean || true
+	$(MAKE) -C $(MLX_DIR) clean || true
 
+# Extra local cleanup (your custom)
 cl:
 	rm -f *.txt
 
-# Remove everything (clean + remove executable)
+# Full clean
 fclean: clean
-	rm -f $(EXEC)
-	make -C $(LIBFT_DIR) fclean
+	rm -f $(NAME)
+	$(MAKE) -C $(LIBFT_DIR) fclean || true
 
-# Rebuild everything
+# Rebuild
 re: fclean all
 
-phony: all clean fclean re
+.PHONY: all clean fclean re cl

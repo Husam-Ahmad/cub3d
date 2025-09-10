@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 12:38:48 by jpluta            #+#    #+#             */
-/*   Updated: 2025/09/09 18:10:54 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/09/10 14:39:46 by huahmad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <string.h>
 #include "libft/get_next_line/get_next_line.h"
 #include "libft/libft.h"
+#include "minilibx-linux/mlx.h"
 
 typedef struct s_mlx
 {
@@ -55,6 +56,11 @@ typedef struct	s_data
 	char				**map;
 	t_mlx				mlx;
 	t_valid_file_data	valid_file_data;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 }					t_data;
 
 /* main.c */

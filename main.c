@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 12:38:52 by jpluta            #+#    #+#             */
-/*   Updated: 2025/09/09 17:20:03 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/09/10 14:41:28 by huahmad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
+	(void)argv;
 	if (argc != 2)
 	{
 		ft_putstr_fd("Wrong input\n", 1);
@@ -25,7 +26,7 @@ int	main(int argc, char **argv)
 		return (1);
 	ft_bzero(&data, sizeof(t_data));
 	check_file_data(argv[1], &data);
-	// construct_data(&data, argv);
+	construct_data(&data, argv);
 	return (0);
 }
 
