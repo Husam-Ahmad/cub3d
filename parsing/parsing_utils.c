@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 17:18:18 by jpluta            #+#    #+#             */
-/*   Updated: 2025/09/09 17:32:27 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/09/11 18:25:23 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ int	valid_data(t_valid_file_data valid_file_data)
 int	test_if_openable(char *path)
 {
 	int	fd;
+	// printf("FROM OPENABLE %s\n", path);
 
 	fd = open(path, O_RDONLY);
-	if (fd != -1)
-		return (0);
+	if (fd == -1)
+		return (1); // zmen s5 na '0'
 	else
 	{
 		close(fd);

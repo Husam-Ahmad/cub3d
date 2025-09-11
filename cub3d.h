@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 12:38:48 by jpluta            #+#    #+#             */
-/*   Updated: 2025/09/09 18:10:54 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/09/11 18:20:11 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void				extract_data_2(char *line, t_data *data);
 int					process_file_data(t_data *data, char *p_to_file);
 void				process_line_for_parsing(char *line, t_data *data);
 void				extract_data_parsing(char *line, t_data *data);
-t_colours			parse_colours(char *line, t_data *data);
+void				parse_colours(char *line, t_colours *colours);
 
 /* parsing/parsing_utils.c */
 int					test_if_openable(char *path);

@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 17:13:45 by jpluta            #+#    #+#             */
-/*   Updated: 2025/09/09 18:13:44 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/09/11 18:39:53 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	process_file_data(t_data *data, char *p_to_file)
 	while (line)
 	{
 		process_line_for_parsing(line, data);
+		free(line);
 		line = get_next_line(file);
 	}
 	close(file);
@@ -42,7 +43,7 @@ void	process_line_for_parsing(char *line, t_data *data)
 		return ;
 	line = skip_empty_spaces(line);
 	if (line[i])
-		extract_data(&line[i], data);
+		extract_data_parsing(&line[i], data);
 	else
 		return ;
 }
@@ -75,22 +76,39 @@ void	extract_data_parsing(char *line, t_data *data)
 		trimmed_line = skip_empty_spaces(line);
 		data->path_to_the_east_texture = ft_strdup(trimmed_line);
 	}
-	// else if (line && (ft_strncmp(line, "F", 1) == 0))
-	// {
-	// 	line += 1;
-	// 	trimmed_line = skip_empty_spaces(line);
-	// 	parse_colours(line, &data->F);
-	// }
-	// else if (line && (ft_strncmp(line, "C", 1) == 0))
-	// {
-	// 	line += 1;
-	// 	trimmed_line = skip_empty_spaces(line);
-	// 	data->C = parse_colours(line, &data->C);
-	// }
+	else if (line && (ft_strncmp(line, "F", 1) == 0))
+	{
+		line += 1;
+		trimmed_line = skip_empty_spaces(line);
+		parse_colours(trimmed_line, &data->F);
+	}
+	else if (line && (ft_strncmp(line, "C", 1) == 0))
+	{
+		line += 1;
+		trimmed_line = skip_empty_spaces(line);
+		parse_colours(trimmed_line, &data->C);
+	}
 }
 
-// t_colours	parse_colours(char *line, t_colours *colour)
-// {
-// 	if ()
-// 	return ()
-// }
+void	parse_colours(char *line, t_colours *colour)
+{
+	int	i;
+
+	i = 0;
+	printf("from prase colour %s", line);
+	
+	if (line[i] && ft_isdigit((int)(line[i])))
+		colour->R = ft_atoi(&line[i]);
+	while (line[i] && (line[i] >= '0' && line[i] <= '9'))
+        i++;
+	while (line[i] && (line[i] == ' ' || line[i] == ',' || line[i] == '\t'))
+		i++;
+	if (line[i] && ft_isdigit((int)(line[i])))
+		colour->G = ft_atoi(&line[i]);
+	while (line[i] && (line[i] >= '0' && line[i] <= '9'))
+        i++;
+	while (line[i] && (line[i] == ' ' || line[i] == ','|| line[i] == '\t'))
+		i++;
+	if (line[i] && ft_isdigit((int)(line[i])))
+		colour->B = ft_atoi(&line[i]);
+}

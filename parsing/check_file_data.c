@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 17:14:46 by jpluta            #+#    #+#             */
-/*   Updated: 2025/09/09 17:55:20 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/09/11 17:54:34 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	check_file_data(char *p_to_file, t_data *data)
 	while (line)
 	{
 		process_line_for_valid_check(line, data);
+		free(line);
 		line = get_next_line(file);
 	}
 	close(file);
@@ -43,8 +44,6 @@ void	process_line_for_valid_check(char *line, t_data *data)
 	i = 0;
 	if (line[0] == '\n')
 		return ;
-	// while (line[i] && (line[i] == ' ' || line[i] == '\t'))
-	// 	i++;
 	line = skip_empty_spaces(line);
 	if (line[i])
 		extract_data(&line[i], data);
@@ -54,7 +53,6 @@ void	process_line_for_valid_check(char *line, t_data *data)
 
 void	extract_data(char *line, t_data *data)
 {
-	printf("line: %s\n", line);
 	if (line && (ft_strncmp(line, "NO", 2) == 0))
 	{
 		line += 2;

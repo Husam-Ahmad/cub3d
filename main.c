@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 12:38:52 by jpluta            #+#    #+#             */
-/*   Updated: 2025/09/09 17:20:03 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/09/11 18:41:24 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ int	main(int argc, char **argv)
 		return (1);
 	ft_bzero(&data, sizeof(t_data));
 	check_file_data(argv[1], &data);
-	// construct_data(&data, argv);
+	// printf("colour C: %d\n", data.C.R);
+	// printf("colour C: %d\n", data.C.G);
+	// printf("colour C: %d\n", data.C.B);
+	// // construct_data(&data, argv);
 	return (0);
 }
 
