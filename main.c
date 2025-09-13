@@ -6,11 +6,24 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 12:38:52 by jpluta            #+#    #+#             */
-/*   Updated: 2025/09/11 18:41:24 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/09/13 13:51:03 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+// for testing purposes
+void	print_stored_data(t_data *data)
+{
+	printf("NO: %s", data->path_to_the_north_texture);
+	printf("SO: %s", data->path_to_the_south_texture);
+	printf("WE: %s", data->path_to_the_west_texture);
+	printf("EA: %s", data->path_to_the_east_texture);
+	printf("colour floor: R %d, G: %d, B: %d\n", data->F.R, data->F.G, data->F.B);
+	printf("colour ceiling: R %d, G: %d, B: %d\n", data->C.R, data->C.G, data->C.B);
+	printf("map rows: %d\n", data->valid_file_data.map_rows);
+	// printf("map: \n");
+}
 
 int	main(int argc, char **argv)
 {
@@ -25,9 +38,7 @@ int	main(int argc, char **argv)
 		return (1);
 	ft_bzero(&data, sizeof(t_data));
 	check_file_data(argv[1], &data);
-	// printf("colour C: %d\n", data.C.R);
-	// printf("colour C: %d\n", data.C.G);
-	// printf("colour C: %d\n", data.C.B);
+	print_stored_data(&data);
 	// // construct_data(&data, argv);
 	return (0);
 }

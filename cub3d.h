@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 12:38:48 by jpluta            #+#    #+#             */
-/*   Updated: 2025/09/11 18:20:11 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/09/13 13:45:42 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct	s_valid_file_data
 	int EA_path_to_the_east_texture;
 	int F;
 	int	C;
-	int	map;
+	int map_rows;
 }					t_valid_file_data;
 
 typedef struct	s_data
@@ -71,6 +71,7 @@ void				extract_data_2(char *line, t_data *data);
 int					process_file_data(t_data *data, char *p_to_file);
 void				process_line_for_parsing(char *line, t_data *data);
 void				extract_data_parsing(char *line, t_data *data);
+void				extract_data_parsing_2(char *line, t_data *data);
 void				parse_colours(char *line, t_colours *colours);
 
 /* parsing/parsing_utils.c */
@@ -78,6 +79,9 @@ int					test_if_openable(char *path);
 char				*skip_empty_spaces(char *line);
 int					valid_data(t_valid_file_data valid_file_data);
 
+/* parsing/map_utils.c */
+int					find_map(char *line);
+void				parse_map(char *line, t_data *data);
 
 /* construct/constructor.c */
 void				construct_data(t_data *data, char **argv);

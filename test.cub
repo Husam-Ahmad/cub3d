@@ -1,11 +1,12 @@
-        WE ./textures/3/WE.png
-SO ./textures/3/SO.png
-        NO      ./textures/3/NO.png
+        WE ./cow.jpg
+SO ./cow.jpg
+        NO      ./cow.jpg
 
         C   20, 	 30	,20  
-EA      ./textures/2/EA.png
+EA      ./cow.jpg
 
   F              31,32,30
+ 
  
         1111111111111111111111111
         1000000000110000000000001

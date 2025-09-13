@@ -7,6 +7,7 @@ main.c \
 parsing/check_file_data.c \
 parsing/process_file_data.c \
 parsing/parsing_utils.c \
+parsing/map_utils.c \
 construct/constructor.c \
 
 OBJ = $(SRC:.c=.o)

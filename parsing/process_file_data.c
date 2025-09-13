@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 17:13:45 by jpluta            #+#    #+#             */
-/*   Updated: 2025/09/11 18:39:53 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/09/13 13:57:19 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,15 @@ void	extract_data_parsing(char *line, t_data *data)
 		trimmed_line = skip_empty_spaces(line);
 		data->path_to_the_west_texture = ft_strdup(trimmed_line);
 	}
-	else if (line && (ft_strncmp(line, "EA", 2) == 0))
+	else
+		extract_data_parsing_2(line, data);
+}
+
+void	extract_data_parsing_2(char *line, t_data *data)
+{
+	char	*trimmed_line;
+	
+	if (line && (ft_strncmp(line, "EA", 2) == 0))
 	{
 		line += 2;
 		trimmed_line = skip_empty_spaces(line);
@@ -88,15 +96,21 @@ void	extract_data_parsing(char *line, t_data *data)
 		trimmed_line = skip_empty_spaces(line);
 		parse_colours(trimmed_line, &data->C);
 	}
+	else if (line && valid_data(data->valid_file_data) == 1)
+	{
+		if (find_map(line) == 0)
+			return ;
+		// else
+		// 	parse_map(line, data);
+	}
 }
+
 
 void	parse_colours(char *line, t_colours *colour)
 {
 	int	i;
 
 	i = 0;
-	printf("from prase colour %s", line);
-	
 	if (line[i] && ft_isdigit((int)(line[i])))
 		colour->R = ft_atoi(&line[i]);
 	while (line[i] && (line[i] >= '0' && line[i] <= '9'))
