@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 17:13:45 by jpluta            #+#    #+#             */
-/*   Updated: 2025/09/13 13:57:19 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/09/13 15:27:20 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,28 @@ int	process_file_data(t_data *data, char *p_to_file)
 		free(line);
 		line = get_next_line(file);
 	}
+	data->map[data->valid_file_data.map_rows] = NULL;
 	close(file);
 	return (0);
 }
 
 void	process_line_for_parsing(char *line, t_data *data)
 {
-	int	i;
+	int		i;
+	char	*map_line;
 
+	map_line = line;
 	i = 0;
 	if (line[0] == '\n')
 		return ;
 	line = skip_empty_spaces(line);
 	if (line[i])
-		extract_data_parsing(&line[i], data);
+		extract_data_parsing(&line[i], data, map_line);
 	else
 		return ;
 }
 
-void	extract_data_parsing(char *line, t_data *data)
+void	extract_data_parsing(char *line, t_data *data, char *map_line)
 {
 	char *trimmed_line;
 
@@ -71,10 +74,10 @@ void	extract_data_parsing(char *line, t_data *data)
 		data->path_to_the_west_texture = ft_strdup(trimmed_line);
 	}
 	else
-		extract_data_parsing_2(line, data);
+		extract_data_parsing_2(line, data, map_line);
 }
 
-void	extract_data_parsing_2(char *line, t_data *data)
+void	extract_data_parsing_2(char *line, t_data *data, char *map_line)
 {
 	char	*trimmed_line;
 	
@@ -100,8 +103,8 @@ void	extract_data_parsing_2(char *line, t_data *data)
 	{
 		if (find_map(line) == 0)
 			return ;
-		// else
-		// 	parse_map(line, data);
+		else
+			parse_map(map_line, data);
 	}
 }
 

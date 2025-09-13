@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 17:14:46 by jpluta            #+#    #+#             */
-/*   Updated: 2025/09/13 13:57:13 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/09/13 14:34:11 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,11 @@ int	check_file_data(char *p_to_file, t_data *data)
 	if (valid_data(data->valid_file_data))
 		process_file_data(data, p_to_file);
 	else
+	{
 		printf("Check_file_data: missing data for successfull exec.");
-	return (0);
+		return (0);
+	}
+	return (1);
 }
 
 

@@ -6,11 +6,13 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 13:27:46 by jpluta            #+#    #+#             */
-/*   Updated: 2025/09/13 14:04:55 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/09/13 15:17:11 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+int find_last_lane(char **map);
 
 int	find_map(char *line)
 {
@@ -22,9 +24,35 @@ int	find_map(char *line)
 		return (0);
 }
 
-// void	parse_map(char *line, t_data *data)
-// {
-// 	char	*temp;
+void	parse_map(char *line, t_data *data)
+{
+	char	*temp;
 
-// 	data->map = (char **)malloc(sizeof(char *))
-// }
+	if (data->map == NULL)
+	{
+		data->map = (char **)malloc((data->valid_file_data.map_rows + 1) * sizeof(char *));
+		if (!data->map)
+		{
+			// free previous allocated memory
+			exit(1);
+		}
+		ft_bzero(data->map, (data->valid_file_data.map_rows + 1) * sizeof(char *));
+	}
+	temp = ft_strdup(line);
+	if (!temp)
+	{
+		// free previous allocated memory
+		exit(1);
+	}
+	data->map[find_last_lane(data->map)] = temp;
+}
+
+int find_last_lane(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i] != NULL)
+		i++;
+	return (i);
+}

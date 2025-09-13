@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 12:38:48 by jpluta            #+#    #+#             */
-/*   Updated: 2025/09/13 13:45:42 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/09/13 15:27:49 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void				extract_data_2(char *line, t_data *data);
 /* parsing/process_file_data.c */
 int					process_file_data(t_data *data, char *p_to_file);
 void				process_line_for_parsing(char *line, t_data *data);
-void				extract_data_parsing(char *line, t_data *data);
-void				extract_data_parsing_2(char *line, t_data *data);
+void				extract_data_parsing(char *line, t_data *data, char *map_line);
+void				extract_data_parsing_2(char *line, t_data *data, char *map_line);
 void				parse_colours(char *line, t_colours *colours);
 
 /* parsing/parsing_utils.c */

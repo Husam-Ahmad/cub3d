@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 12:38:52 by jpluta            #+#    #+#             */
-/*   Updated: 2025/09/13 13:51:03 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/09/13 15:31:28 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 // for testing purposes
 void	print_stored_data(t_data *data)
 {
+	int	i, x;
+
+	i = 0;
+	x = 0;
 	printf("NO: %s", data->path_to_the_north_texture);
 	printf("SO: %s", data->path_to_the_south_texture);
 	printf("WE: %s", data->path_to_the_west_texture);
@@ -22,7 +26,12 @@ void	print_stored_data(t_data *data)
 	printf("colour floor: R %d, G: %d, B: %d\n", data->F.R, data->F.G, data->F.B);
 	printf("colour ceiling: R %d, G: %d, B: %d\n", data->C.R, data->C.G, data->C.B);
 	printf("map rows: %d\n", data->valid_file_data.map_rows);
-	// printf("map: \n");
+	printf("map: \n");
+	while (i <= data->valid_file_data.map_rows)
+	{
+		printf("%s", data->map[i]);
+		i++;
+	}
 }
 
 int	main(int argc, char **argv)
@@ -37,7 +46,12 @@ int	main(int argc, char **argv)
 	else if (!is_file_name_valid(argv[1]))
 		return (1);
 	ft_bzero(&data, sizeof(t_data));
-	check_file_data(argv[1], &data);
+	if (check_file_data(argv[1], &data) == 0)
+	{
+		printf("Error during checking data correctness");
+		return (1);
+	}
+	
 	print_stored_data(&data);
 	// // construct_data(&data, argv);
 	return (0);
