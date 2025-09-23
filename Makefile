@@ -1,49 +1,49 @@
-# Variables
 NAME = cub3D	
 CC = cc
-# CFLAGS = -Wall -Wextra -Werror 
+MLX_DIR = minilibx-linux
+CFLAGS = -Wall -Wextra -Werror -I$(MLX_DIR)
+MLX = $(MLX_DIR)/libmlx.a
 SRC = \
 main.c \
 parsing/check_file_data.c \
 parsing/process_file_data.c \
 parsing/parsing_utils.c \
-construct/constructor.c \
+parsing/map_utils.c \
+construct/constructor.c 
+
 
 OBJ = $(SRC:.c=.o)
 
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-EXEC = cub3D
+all: $(LIBFT) $(MLX) $(NAME)
 
-# Default target
-all: $(LIBFT) $(EXEC)
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) $(LIBFT) -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -o $(NAME)
 
-# Link object files to create the executable
-$(EXEC): $(OBJ)
-	$(CC) $(OBJ) $(LIBFT) -o $(EXEC)
-
-# Compile .c files into .o files
 %.o: %.c
 	$(CC) $(CFLAGS) -c -g $< -o $@
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)
 
-# Clean up generated files
+$(MLX):
+	make -C $(MLX_DIR)
+
 clean:
 	rm -f $(OBJ)
 	make -C $(LIBFT_DIR) clean
+	make -C $(MLX_DIR) clean
 
 cl:
 	rm -f *.txt
 
-# Remove everything (clean + remove executable)
 fclean: clean
-	rm -f $(EXEC)
+	rm -f $(NAME)
 	make -C $(LIBFT_DIR) fclean
+	make -C $(MLX_DIR) clean
 
-# Rebuild everything
 re: fclean all
 
 phony: all clean fclean re
