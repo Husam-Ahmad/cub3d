@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_file_data.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 17:13:45 by jpluta            #+#    #+#             */
-/*   Updated: 2025/09/09 18:13:44 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/09/23 19:26:58 by huahmad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,31 @@ int	process_file_data(t_data *data, char *p_to_file)
 	while (line)
 	{
 		process_line_for_parsing(line, data);
+		free(line);
 		line = get_next_line(file);
 	}
+	data->map[data->valid_file_data.map_rows] = NULL;
 	close(file);
 	return (0);
 }
 
 void	process_line_for_parsing(char *line, t_data *data)
 {
-	int	i;
+	int		i;
+	char	*map_line;
 
+	map_line = line;
 	i = 0;
 	if (line[0] == '\n')
 		return ;
 	line = skip_empty_spaces(line);
 	if (line[i])
-		extract_data(&line[i], data);
+		extract_data_parsing(&line[i], data, map_line);
 	else
 		return ;
 }
 
-void	extract_data_parsing(char *line, t_data *data)
+void	extract_data_parsing(char *line, t_data *data, char *map_line)
 {
 	char *trimmed_line;
 
@@ -69,28 +73,58 @@ void	extract_data_parsing(char *line, t_data *data)
 		trimmed_line = skip_empty_spaces(line);
 		data->path_to_the_west_texture = ft_strdup(trimmed_line);
 	}
-	else if (line && (ft_strncmp(line, "EA", 2) == 0))
+	else
+		extract_data_parsing_2(line, data, map_line);
+}
+
+void	extract_data_parsing_2(char *line, t_data *data, char *map_line)
+{
+	char	*trimmed_line;
+	
+	if (line && (ft_strncmp(line, "EA", 2) == 0))
 	{
 		line += 2;
 		trimmed_line = skip_empty_spaces(line);
 		data->path_to_the_east_texture = ft_strdup(trimmed_line);
 	}
-	// else if (line && (ft_strncmp(line, "F", 1) == 0))
-	// {
-	// 	line += 1;
-	// 	trimmed_line = skip_empty_spaces(line);
-	// 	parse_colours(line, &data->F);
-	// }
-	// else if (line && (ft_strncmp(line, "C", 1) == 0))
-	// {
-	// 	line += 1;
-	// 	trimmed_line = skip_empty_spaces(line);
-	// 	data->C = parse_colours(line, &data->C);
-	// }
+	else if (line && (ft_strncmp(line, "F", 1) == 0))
+	{
+		line += 1;
+		trimmed_line = skip_empty_spaces(line);
+		parse_colours(trimmed_line, &data->F);
+	}
+	else if (line && (ft_strncmp(line, "C", 1) == 0))
+	{
+		line += 1;
+		trimmed_line = skip_empty_spaces(line);
+		parse_colours(trimmed_line, &data->C);
+	}
+	else if (line && valid_data(data->valid_file_data) == 1)
+	{
+		if (find_map(line) == 0)
+			return ;
+		else
+			parse_map(map_line, data);
+	}
 }
 
-// t_colours	parse_colours(char *line, t_colours *colour)
-// {
-// 	if ()
-// 	return ()
-// }
+void	parse_colours(char *line, t_colours *colour)
+{
+	int	i;
+
+	i = 0;
+	if (line[i] && ft_isdigit((int)(line[i])))
+		colour->R = ft_atoi(&line[i]);
+	while (line[i] && (line[i] >= '0' && line[i] <= '9'))
+        i++;
+	while (line[i] && (line[i] == ' ' || line[i] == ',' || line[i] == '\t'))
+		i++;
+	if (line[i] && ft_isdigit((int)(line[i])))
+		colour->G = ft_atoi(&line[i]);
+	while (line[i] && (line[i] >= '0' && line[i] <= '9'))
+        i++;
+	while (line[i] && (line[i] == ' ' || line[i] == ','|| line[i] == '\t'))
+		i++;
+	if (line[i] && ft_isdigit((int)(line[i])))
+		colour->B = ft_atoi(&line[i]);
+}
