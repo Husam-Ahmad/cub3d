@@ -6,7 +6,7 @@
 /*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 12:38:52 by jpluta            #+#    #+#             */
-/*   Updated: 2025/09/23 17:21:06 by huahmad          ###   ########.fr       */
+/*   Updated: 2025/09/24 12:48:01 by huahmad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	main(int argc, char **argv)
 	ft_bzero(&data, sizeof(t_data));
 	check_file_data(argv[1], &data);
 	construct_data(&data, argv);
+	hooks(&data);
+	mlx_loop(data.mlx.ptr);
 	return (0);
 }
 
@@ -47,7 +49,6 @@ int	is_file_name_valid(char *file_name)
 	else
 		return (1);
 }
-
 t_valid_file_data	init_valid_file_data(void)
 {
 	t_valid_file_data	default_data;
