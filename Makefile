@@ -9,7 +9,10 @@ parsing/check_file_data.c \
 parsing/process_file_data.c \
 parsing/parsing_utils.c \
 parsing/map_utils.c \
-construct/constructor.c 
+construct/constructor.c \
+hooking/keyhook.c \
+hooking/movement.c \
+hooking/rotation.c 
 
 
 OBJ = $(SRC:.c=.o)

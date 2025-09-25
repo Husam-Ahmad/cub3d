@@ -6,13 +6,13 @@
 /*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 16:47:44 by huahmad           #+#    #+#             */
-/*   Updated: 2025/09/23 19:44:39 by huahmad          ###   ########.fr       */
+/*   Updated: 2025/09/24 12:48:19 by huahmad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static void	draw_vertical_line(t_data *data, int x)
+void	draw_vertical_line(t_data *data, int x)
 {
 	int		y;
 	int		start;
@@ -38,7 +38,7 @@ static void	draw_vertical_line(t_data *data, int x)
 	}
 }
 
-static void	calc_line(t_data *data)
+void	calc_line(t_data *data)
 {
 	if (data->side == 0)
 		data->perp_wall_dist = (data->map_x - data->posX + (1 - data->step_x)
@@ -55,7 +55,7 @@ static void	calc_line(t_data *data)
 		data->draw_end = SCREEN_HEIGHT - 1;
 }
 
-static void	dda(t_data *data)
+void	dda(t_data *data)
 {
 	while (!data->hit)
 	{
@@ -76,7 +76,7 @@ static void	dda(t_data *data)
 	}
 }
 
-static void	init_ray(t_data *data, int x)
+void	init_ray(t_data *data, int x)
 {
 	double	camera_x;
 
@@ -208,5 +208,4 @@ void	construct_data(t_data *data, char **argv)
 	init_player(data);
 	draw_scene(data);
 	mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->mlx.img, 0, 0);
-	mlx_loop(data->mlx.ptr);
 }

@@ -6,7 +6,7 @@
 /*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 12:38:48 by jpluta            #+#    #+#             */
-/*   Updated: 2025/09/23 19:29:11 by huahmad          ###   ########.fr       */
+/*   Updated: 2025/09/25 11:20:45 by huahmad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,15 @@
 
 # define SCREEN_WIDTH  800
 # define SCREEN_HEIGHT 600
+# define ESC_KEY 65307
+# define W_KEY 119
+# define A_KEY 97
+# define S_KEY 115
+# define D_KEY 100
+# define LEFT_ARROW_KEY 65361
+# define RIGHT_ARROW_KEY 65363
+
+# define move_speed 1
 
 #include <stdio.h>
 #include <stdbool.h>
@@ -121,5 +130,25 @@ void				parse_map(char *line, t_data *data);
 /* construct/constructor.c */
 void				construct_data(t_data *data, char **argv);
 t_mlx				start_window(void);
+void				draw_scene(t_data *data);
+void				init_player(t_data *data);
+void				init_ray(t_data *data, int x);
+void				dda(t_data *data);
+void				calc_line(t_data *data);
+void				draw_vertical_line(t_data *data, int x);
+
+/* hooking/keyhook.c */
+int					handle_key(int keycode, t_data *data);
+void				hooks(t_data *data);
+
+/* hooking/movement.c */
+void				move_forward(t_data *data);
+void 				move_backward(t_data *data);
+void				rotate_left(t_data *data);
+void				rotate_right(t_data *data);
+
+/* hooking/rotation.c */
+void				move_left(t_data *data);
+void				move_right(t_data *data);
 
 #endif
