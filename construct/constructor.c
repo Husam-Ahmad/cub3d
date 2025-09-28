@@ -6,7 +6,7 @@
 /*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 16:47:44 by huahmad           #+#    #+#             */
-/*   Updated: 2025/09/24 12:48:19 by huahmad          ###   ########.fr       */
+/*   Updated: 2025/09/28 17:50:31 by huahmad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,11 @@ void	draw_scene(t_data *data)
 	{
 		init_ray(data, x);
 		dda(data);
-		calc_line(data);
+		// calc_line(data); i cant load the damn textures
+		// assign_tex(data);
 		draw_vertical_line(data, x);
+		// calc_texture_hit(data);
+		// draw_wall_line(data, x);
 		x++;
 	}
 }
@@ -206,6 +209,7 @@ void	construct_data(t_data *data, char **argv)
 	data->mlx = start_window();
 	(void)argv;
 	init_player(data);
+	// load_textures(data);
 	draw_scene(data);
 	mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->mlx.img, 0, 0);
 }

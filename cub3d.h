@@ -6,7 +6,7 @@
 /*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 12:38:48 by jpluta            #+#    #+#             */
-/*   Updated: 2025/09/25 11:20:45 by huahmad          ###   ########.fr       */
+/*   Updated: 2025/09/28 17:40:49 by huahmad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct s_mlx
 	void	*img;
 	int		bits_per_pixel;
 	int		line_length;
+	int 	*texture_width;
+	int 	*texture_hight;
 	int		endian;
 }	t_mlx;
 
@@ -77,12 +79,12 @@ typedef struct	s_data
 	t_colours			C;
 	t_mlx				mlx;
 	t_valid_file_data	valid_file_data;
-	double				posX; 
-	double 				posY;   
-    double				dirX;   
-    double				dirY;   
-    double				planeY; // for camera 
-    double				planeX; // for camera 
+	double				posX;
+	double 				posY;
+    double				dirX;
+    double				dirY;
+    double				planeY;
+    double				planeX;
 	int					map_x;
 	int 				map_y;
 	int     			step_x ;
@@ -98,7 +100,14 @@ typedef struct	s_data
 	double 				side_dist_y;
 	double 				delta_dist_x;
 	double 				delta_dist_y; 
+	double				skip;
+	t_mlx				tex_no;
+	t_mlx				tex_so;
+	t_mlx				tex_we;
+	t_mlx				tex_ea;
 	double 				perp_wall_dist;
+	t_mlx				*tex;
+	int			tex_x;
 }					t_data;
 
 /* main.c */
@@ -150,5 +159,13 @@ void				rotate_right(t_data *data);
 /* hooking/rotation.c */
 void				move_left(t_data *data);
 void				move_right(t_data *data);
+
+/* construct/texture.c */
+void				assign_tex(t_data *data);
+void				calc_texture_hit(t_data *data);
+void				draw_wall_line(t_data *data, int x);
+
+/* construct/load_tex.c */
+void	load_textures(t_data *data);
 
 #endif
