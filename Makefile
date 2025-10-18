@@ -5,6 +5,7 @@ CFLAGS = -Wall -Wextra -Werror -I$(MLX_DIR)
 MLX = $(MLX_DIR)/libmlx.a
 SRC = \
 main.c \
+alg_map_boundaries.c \
 parsing/check_file_data.c \
 parsing/process_file_data.c \
 parsing/parsing_utils.c \

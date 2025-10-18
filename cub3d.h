@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 12:38:48 by jpluta            #+#    #+#             */
-/*   Updated: 2025/09/25 11:20:45 by huahmad          ###   ########.fr       */
+/*   Updated: 2025/10/18 17:29:44 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,13 @@ typedef struct	s_data
 /* main.c */
 t_valid_file_data	init_valid_file_data(void);
 int					is_file_name_valid(char *file_name);
+
+/* alg_map_boundaries */
+int					check_boundaries(t_data *data);
+int					find_longest_line(char **map);
+bool 				flood_fill(char **map, bool **visited,
+						int rows, int cols, int row, int col);
+bool				is_map_enclosed(char **map, int rows, int cols);
 
 /* parsing/check_file_data.c */
 int					check_file_data(char *file, t_data *data);
