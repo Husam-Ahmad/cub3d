@@ -4,6 +4,7 @@ CC = cc
 # CFLAGS = -Wall -Wextra -Werror 
 SRC = \
 main.c \
+alg_map_boundaries.c \
 parsing/check_file_data.c \
 parsing/process_file_data.c \
 parsing/parsing_utils.c \

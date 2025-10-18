@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 17:18:18 by jpluta            #+#    #+#             */
-/*   Updated: 2025/09/11 18:25:23 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/10/18 16:13:05 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	valid_data(t_valid_file_data valid_file_data)
 	else if (!valid_file_data.F)
 		return (0);
 	else if (!valid_file_data.C)
+		return (0);
+	else if (valid_file_data.map_rows <= 2)
 		return (0);
 	else
 		return (1);

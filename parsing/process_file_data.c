@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 17:13:45 by jpluta            #+#    #+#             */
-/*   Updated: 2025/09/13 15:27:20 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/10/18 16:54:47 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	process_file_data(t_data *data, char *p_to_file)
 	}
 	data->map[data->valid_file_data.map_rows] = NULL;
 	close(file);
+	if (check_boundaries(data) == -1)
+		return (1);
 	return (0);
 }
 

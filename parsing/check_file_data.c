@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 17:14:46 by jpluta            #+#    #+#             */
-/*   Updated: 2025/09/13 14:34:11 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/10/18 16:17:18 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,9 @@ int	check_file_data(char *p_to_file, t_data *data)
 	if (valid_data(data->valid_file_data))
 		process_file_data(data, p_to_file);
 	else
-	{
-		printf("Check_file_data: missing data for successfull exec.");
 		return (0);
-	}
 	return (1);
 }
-
 
 void	process_line_for_valid_check(char *line, t_data *data)
 {
@@ -96,7 +92,7 @@ void	extract_data_2(char *line, t_data *data)
 		data->valid_file_data.F = 1;
 	else if (line && (ft_strncmp(line, "C", 1) == 0))
 		data->valid_file_data.C = 1;
-	else if (line && valid_data(data->valid_file_data) == 1)
+	else if (line)
 	{
 		if (find_map(line) == 1)
 			data->valid_file_data.map_rows++;

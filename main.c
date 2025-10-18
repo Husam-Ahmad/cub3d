@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 12:38:52 by jpluta            #+#    #+#             */
-/*   Updated: 2025/09/13 15:31:28 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/10/18 17:00:31 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	print_stored_data(t_data *data)
 	printf("colour ceiling: R %d, G: %d, B: %d\n", data->C.R, data->C.G, data->C.B);
 	printf("map rows: %d\n", data->valid_file_data.map_rows);
 	printf("map: \n");
+	// map_boundaries(data);
 	while (i <= data->valid_file_data.map_rows)
 	{
 		printf("%s", data->map[i]);
@@ -48,10 +49,9 @@ int	main(int argc, char **argv)
 	ft_bzero(&data, sizeof(t_data));
 	if (check_file_data(argv[1], &data) == 0)
 	{
-		printf("Error during checking data correctness");
+		printf("Error intcorrect data\n");
 		return (1);
 	}
-	
 	print_stored_data(&data);
 	// // construct_data(&data, argv);
 	return (0);
