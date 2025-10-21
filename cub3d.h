@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 12:38:48 by jpluta            #+#    #+#             */
-/*   Updated: 2025/10/18 17:29:44 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/10/21 18:27:44 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,14 @@ typedef struct	s_data
 	double 				perp_wall_dist;
 }					t_data;
 
-/* main.c */
+/* main_utils/free_memory.c */
+void				eval_data(int return_val, t_data *data);
+void				free_textures(t_data *data);
+void				free_and_exit(t_data *data);
 t_valid_file_data	init_valid_file_data(void);
 int					is_file_name_valid(char *file_name);
 
-/* alg_map_boundaries */
+/* main_utils/alg_map_boundaries.c */
 int					check_boundaries(t_data *data);
 int					find_longest_line(char **map);
 bool 				flood_fill(char **map, bool **visited,
