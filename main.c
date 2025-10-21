@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 12:38:52 by jpluta            #+#    #+#             */
-/*   Updated: 2025/10/18 17:30:53 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/10/21 18:25:36 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
+	ft_bzero(&data, sizeof(t_data));
 	if (argc != 2)
 	{
 		ft_putstr_fd("Wrong input\n", 1);
@@ -23,40 +24,10 @@ int	main(int argc, char **argv)
 	}
 	else if (!is_file_name_valid(argv[1]))
 		return (1);
-	ft_bzero(&data, sizeof(t_data));
-	if (check_file_data(argv[1], &data) == 0)
-	{
-		printf("Error intcorrect data\n");
-		return (1);
-	}
+	eval_data(check_file_data(argv[1], &data), &data);
 	construct_data(&data, argv);
 	hooks(&data);
 	mlx_loop(data.mlx.ptr);
 	return (0);
 }
 
-int	is_file_name_valid(char *file_name)
-{
-	char	*p_to_extension;
-
-	p_to_extension = ft_strchr(file_name, '.');
-	if (!p_to_extension)
-	{
-		printf("Expected file with .cub extension\n");
-		return (0);
-	}
-	else if (ft_strncmp(p_to_extension, ".cub", 4) != 0)
-	{
-		printf("Wrong extension: expected .cub\n");
-		return (0);
-	}
-	else
-		return (1);
-}
-t_valid_file_data	init_valid_file_data(void)
-{
-	t_valid_file_data	default_data;
-
-	ft_bzero(&default_data, sizeof(t_valid_file_data));
-	return (default_data);
-}
