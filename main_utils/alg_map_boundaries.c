@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   alg_map_boundaries.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 16:51:22 by jpluta            #+#    #+#             */
-/*   Updated: 2025/10/18 17:34:59 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/10/27 13:33:10 by huahmad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 int check_boundaries(t_data *data)
 {

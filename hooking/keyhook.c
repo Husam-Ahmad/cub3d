@@ -6,11 +6,18 @@
 /*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 12:34:31 by huahmad           #+#    #+#             */
-/*   Updated: 2025/09/25 11:13:42 by huahmad          ###   ########.fr       */
+/*   Updated: 2025/10/27 15:54:36 by huahmad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+static int	close_win(t_data *data)
+{
+    (void)data;
+    exit(0);
+    return (0);
+}
 
 int handle_key(int keycode, t_data *data)
 {
@@ -34,8 +41,29 @@ int handle_key(int keycode, t_data *data)
 }
 
 void hooks(t_data *data)
+// {
+//     if (!data || !data->mlx.ptr || !data->mlx.win)
+//     {
+//         ft_putstr_fd("Error: mlx not initialized in hooks\n", 2);
+//         return ;
+//     }
+//     mlx_hook(data->mlx.win, 2, 1L<<0, handle_key, data);
+//     // mlx_hook(data->mlx.win, 17, 0, exit, NULL);
+//     // mlx_loop(data->mlx.ptr);
+// }
 {
-    mlx_hook(data->mlx.win, 2, 1L<<0, handle_key, data);
-    // mlx_hook(data->mlx.win, 17, 0, exit, NULL);
-    // mlx_loop(data->mlx.ptr);
+    if (!data)
+    {
+        ft_putstr_fd("hooks: data is NULL\n", 2);
+        return ;
+    }
+    fprintf(stderr, "hooks: mlx.ptr=%p mlx.win=%p\n", data->mlx.ptr, data->mlx.win);
+    /* prefer mlx_key_hook to avoid mlx_int_set_win_event_mask inside mlx_hook */
+    if (data->mlx.ptr && data->mlx.win)
+    {
+        mlx_key_hook(data->mlx.win, handle_key, data);
+        mlx_hook(data->mlx.win, 17, 0, close_win, data); /* window close */
+    }
+    else
+        ft_putstr_fd("Error: mlx not initialized in hooks\n", 2);
 }
