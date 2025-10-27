@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 12:38:48 by jpluta            #+#    #+#             */
-/*   Updated: 2025/10/21 18:27:44 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/10/27 15:28:19 by huahmad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@
 
 typedef struct s_mlx
 {
+	int 	width;
+	int 	height;
+	int		bpp;
 	void	*ptr;
 	void	*win;
 	char   *addr;
@@ -76,6 +79,10 @@ typedef struct	s_data
 	t_colours			F;
 	t_colours			C;
 	t_mlx				mlx;
+	t_mlx				*north;
+	t_mlx				*south;
+	t_mlx				*east;
+	t_mlx				*west;
 	t_valid_file_data	valid_file_data;
 	double				posX; 
 	double 				posY;   
@@ -99,6 +106,9 @@ typedef struct	s_data
 	double 				delta_dist_x;
 	double 				delta_dist_y; 
 	double 				perp_wall_dist;
+	int                 wall_color;
+	int 			   floor_color;
+	int 			   ceiling_color;
 }					t_data;
 
 /* main_utils/free_memory.c */
