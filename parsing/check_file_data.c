@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 17:14:46 by jpluta            #+#    #+#             */
-/*   Updated: 2025/10/21 17:45:23 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/10/27 18:21:35 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	process_line_for_valid_check(char *line, t_data *data)
 
 void	extract_data(char *line, t_data *data)
 {
-	printf("line: %s\n", line);
 	if (line && (ft_strncmp(line, "NO", 2) == 0))
 	{
 		line += 2;
