@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 12:38:48 by jpluta            #+#    #+#             */
-/*   Updated: 2025/10/27 15:28:19 by huahmad          ###   ########.fr       */
+/*   Updated: 2025/10/30 17:56:38 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ void				extract_data_parsing_2(char *line, t_data *data, char *map_line);
 void				parse_colours(char *line, t_colours *colours);
 
 /* parsing/parsing_utils.c */
-int					test_if_openable(char *path);
+int					test_if_openable_and_valid(char *path, int *status);
 char				*skip_empty_spaces(char *line);
 int					valid_data(t_valid_file_data valid_file_data);
 
