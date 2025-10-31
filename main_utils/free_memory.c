@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 18:24:53 by jpluta            #+#    #+#             */
-/*   Updated: 2025/10/21 18:26:47 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/10/30 18:00:18 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	eval_data(int return_val, t_data *data)
 {
 	if (return_val == 0) // missing or incorrect data
 	{
-		printf("Error intcorrect data\n");
-		free_and_exit(data);
+		printf("Error incorrect data\n");
+		exit(1);
 	}
 	else if (return_val == -1) // map is enclosed
 		free_and_exit(data);

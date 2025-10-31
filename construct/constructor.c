@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   constructor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 16:47:44 by huahmad           #+#    #+#             */
-/*   Updated: 2025/10/27 16:15:41 by huahmad          ###   ########.fr       */
+/*   Updated: 2025/10/27 18:07:12 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -320,7 +320,7 @@ void	tex_initialiser(t_data *data)
 	printf("something%s\n", data->path_to_the_east_texture);
 	data->east->img = mlx_xpm_file_to_image(data->mlx.ptr, data->path_to_the_east_texture,
 			&data->east->width, &data->east->height);
-	check_img(data->east->img, data->path_to_the_east_texture);
+	// check_img(data->east->img, data->path_to_the_east_texture);
 	data->east->addr = my_addr(data->east);
 	data->north->img = mlx_xpm_file_to_image(data->mlx.ptr, data->path_to_the_north_texture,
 			&data->north->width, &data->north->height);

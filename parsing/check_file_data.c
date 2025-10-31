@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 17:14:46 by jpluta            #+#    #+#             */
-/*   Updated: 2025/10/21 17:45:23 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/10/30 17:56:54 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,26 +57,28 @@ void	process_line_for_valid_check(char *line, t_data *data)
 
 void	extract_data(char *line, t_data *data)
 {
-	printf("line: %s\n", line);
 	if (line && (ft_strncmp(line, "NO", 2) == 0))
 	{
 		line += 2;
 		data->path_to_the_north_texture = skip_empty_spaces(line);
-		if (test_if_openable(data->path_to_the_north_texture))
-			data->valid_file_data.NO_path_to_the_north_texture = 1;
+		if (test_if_openable_and_valid(data->path_to_the_north_texture,
+			&data->valid_file_data.NO_path_to_the_north_texture))
+				data->valid_file_data.NO_path_to_the_north_texture = 1;
 	}
 	else if (line && (ft_strncmp(line, "SO", 2) == 0))
 	{
 		line += 2;
 		data->path_to_the_south_texture = skip_empty_spaces(line);
-		if (test_if_openable(data->path_to_the_south_texture))
-			data->valid_file_data.SO_path_to_the_south_texture = 1;
+		if (test_if_openable_and_valid(data->path_to_the_south_texture,
+			&data->valid_file_data.SO_path_to_the_south_texture))
+				data->valid_file_data.SO_path_to_the_south_texture = 1;
 	}
 	else if (line && (ft_strncmp(line, "WE", 2) == 0))
 	{
 		line += 2;
 		data->path_to_the_west_texture = skip_empty_spaces(line);
-		if (test_if_openable(data->path_to_the_west_texture))
+		if (test_if_openable_and_valid(data->path_to_the_west_texture,
+			&data->valid_file_data.WE_path_to_the_west_texture))
 			data->valid_file_data.WE_path_to_the_west_texture = 1;
 	}
 	else
@@ -89,8 +91,9 @@ void	extract_data_2(char *line, t_data *data)
 	{
 		line += 2;
 		data->path_to_the_east_texture = skip_empty_spaces(line);
-		if (test_if_openable(data->path_to_the_east_texture))
-			data->valid_file_data.EA_path_to_the_east_texture = 1;
+		if (test_if_openable_and_valid(data->path_to_the_east_texture,
+			&data->valid_file_data.EA_path_to_the_east_texture))
+				data->valid_file_data.EA_path_to_the_east_texture = 1;
 	}
 	else if (line && (ft_strncmp(line, "F", 1) == 0))
 		data->valid_file_data.F = 1;
