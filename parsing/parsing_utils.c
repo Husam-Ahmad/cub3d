@@ -6,13 +6,11 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 17:18:18 by jpluta            #+#    #+#             */
-/*   Updated: 2025/11/01 16:27:41 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/11/03 16:27:41 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-char	*helper(char *path);
 
 int	valid_data(t_valid_file_data valid_file_data)
 {

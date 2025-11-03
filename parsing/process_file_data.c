@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 17:13:45 by jpluta            #+#    #+#             */
-/*   Updated: 2025/11/01 16:39:24 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/11/03 16:30:26 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,19 @@ void	extract_data_parsing(char *line, t_data *data, char *map_line)
 	{
 		line += 2;
 		trimmed_line = skip_empty_spaces(line);
-		data->path_to_the_north_texture = ft_strdup(trimmed_line);
+		data->path_to_the_north_texture = helper(trimmed_line);
 	}
 	else if (line && (ft_strncmp(line, "SO", 2) == 0))
 	{
 		line += 2;
 		trimmed_line = skip_empty_spaces(line);
-		data->path_to_the_south_texture = ft_strdup(trimmed_line);
+		data->path_to_the_south_texture = helper(trimmed_line);
 	}
 	else if (line && (ft_strncmp(line, "WE", 2) == 0))
 	{
 		line += 2;
 		trimmed_line = skip_empty_spaces(line);
-		data->path_to_the_west_texture = ft_strdup(trimmed_line);
+		data->path_to_the_west_texture = helper(trimmed_line);
 	}
 	else
 		extract_data_parsing_2(line, data, map_line);
@@ -89,7 +89,7 @@ void	extract_data_parsing_2(char *line, t_data *data, char *map_line)
 	{
 		line += 2;
 		trimmed_line = skip_empty_spaces(line);
-		data->path_to_the_east_texture = ft_strdup(trimmed_line);
+		data->path_to_the_east_texture = helper(trimmed_line);
 	}
 	else if (line && (ft_strncmp(line, "F", 1) == 0))
 	{

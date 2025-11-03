@@ -3,51 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   alg_map_boundaries.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 16:51:22 by jpluta            #+#    #+#             */
-/*   Updated: 2025/10/27 13:33:10 by huahmad          ###   ########.fr       */
+/*   Updated: 2025/11/03 17:14:45 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int check_boundaries(t_data *data)
-{
-	int rows = data->valid_file_data.map_rows;
-	int cols = find_longest_line(data->map);
-
-	if (!is_map_enclosed(data->map, rows, cols))
-		return (-1);
-
-	return (0);
-}
-
-int	find_longest_line(char **map)
-{
-	int longest;
-	int i;
-
-	longest = 0;
-	i = 0;
-
-	while (map[i])
-	{
-		if (longest < (int)ft_strlen(map[i]))
-			longest = (int)ft_strlen(map[i]);
-		i++;
-	}
-	return (longest);
-}
-
-bool flood_fill(char **map, bool **visited, int rows, int cols, int row, int col)
+bool	flood_fill(char **map, bool **visited, int rows, int cols, int row,
+		int col)
 {
 	bool	up;
 	bool	down;
 	bool	left;
 	bool	right;
 	char	c;
-	
+
 	if (row < 0 || row >= rows || col < 0 || col >= cols)
 		return (false);
 	if (map[row][col] == '1')
@@ -65,47 +38,122 @@ bool flood_fill(char **map, bool **visited, int rows, int cols, int row, int col
 	return (up && down && left && right);
 }
 
-bool is_map_enclosed(char **map, int rows, int cols)
+// bool	is_map_enclosed(char **map, int rows, int cols)
+// {
+// 	char	c;
+// 	int		start_row;
+// 	int		start_col;
+// 	bool	result;
+// 	bool	**visited;
+
+// 	start_row = -1;
+// 	start_col = -1;
+// 	for (int i = 0; i < rows; i++)
+// 	{
+// 		for (int j = 0; j < (int)ft_strlen(map[i]); j++)
+// 		{
+// 			c = map[i][j];
+// 			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+// 			{
+// 				start_row = i;
+// 				start_col = j;
+// 				break ;
+// 			}
+// 		}
+// 		if (start_row != -1)
+// 			break ;
+// 	}
+// 	if (start_row == -1)
+// 	{
+// 		printf("Error: No player start position found.\n");
+// 		return (false);
+// 	}
+// 	visited = malloc(sizeof(bool *) * rows);
+// 	for (int i = 0; i < rows; i++)
+// 		visited[i] = calloc(cols, sizeof(bool));
+// 	result = flood_fill(map, visited, rows, cols, start_row, start_col);
+// 	for (int i = 0; i < rows; i++)
+// 		free(visited[i]);
+// 	free(visited);
+// 	if (!result)
+// 		printf("Map is NOT enclosed.\n");
+// 	else
+// 		printf("Map is fully enclosed.\n");
+// 	return (result);
+// }
+
+static bool	find_start_pos(char **map, int rows, int *sr, int *sc)
 {
-	char	c;
-	int		start_row;
-	int		start_col;
-	bool	result;
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < rows)
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'N' || map[i][j] == 'S'
+				|| map[i][j] == 'E' || map[i][j] == 'W')
+			{
+				*sr = i;
+				*sc = j;
+				return (true);
+			}
+			j++;
+		}
+		i++;
+	}
+	printf("Error: No player start position found.\n");
+	return (false);
+}
+
+static bool	**alloc_visited(int rows, int cols)
+{
+	int		i;
 	bool	**visited;
 
-	start_row = -1;
-	start_col = -1;
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j < (int)ft_strlen(map[i]); j++)
-		{
-			c = map[i][j];
-			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
-			{
-				start_row = i;
-				start_col = j;
-				break ;
-			}
-		}
-		if (start_row != -1)
-			break ;
-	}
-	if (start_row == -1)
-	{
-		printf("Error: No player start position found.\n");
-		return (false);
-	}
 	visited = malloc(sizeof(bool *) * rows);
-	for (int i = 0; i < rows; i++)
+	if (!visited)
+		return (NULL);
+	i = 0;
+	while (i < rows)
+	{
 		visited[i] = calloc(cols, sizeof(bool));
-	result = flood_fill(map, visited, rows, cols, start_row, start_col);
-	for (int i = 0; i < rows; i++)
-		free(visited[i]);
+		if (!visited[i])
+			return (NULL);
+		i++;
+	}
+	return (visited);
+}
+
+static void	free_visited(bool **visited, int rows)
+{
+	int	i;
+
+	i = 0;
+	while (i < rows)
+		free(visited[i++]);
 	free(visited);
+}
+
+bool	is_map_enclosed(char **map, int rows, int cols)
+{
+	int		sr;
+	int		sc;
+	bool	**visited;
+	bool	result;
+
+	if (!find_start_pos(map, rows, &sr, &sc))
+		return (false);
+	visited = alloc_visited(rows, cols);
+	if (!visited)
+		return (false);
+	result = flood_fill(map, visited, rows, cols, sr, sc);
+	free_visited(visited, rows);
 	if (!result)
 		printf("Map is NOT enclosed.\n");
 	else
 		printf("Map is fully enclosed.\n");
 	return (result);
 }
-
