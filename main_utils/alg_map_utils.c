@@ -1,33 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   alg_map_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/06 12:38:52 by jpluta            #+#    #+#             */
-/*   Updated: 2025/11/03 16:42:51 by jpluta           ###   ########.fr       */
+/*   Created: 2025/11/03 17:14:13 by jpluta            #+#    #+#             */
+/*   Updated: 2025/11/03 17:17:25 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
-int	main(int argc, char **argv)
+int	check_boundaries(t_data *data)
 {
-	t_data	data;
+	int	rows;
+	int	cols;
 
-	ft_bzero(&data, sizeof(t_data));
-	if (argc != 2)
-	{
-		ft_putstr_fd("Wrong input\n", 1);
-		return (0);
-	}
-	else if (!is_file_name_valid(argv[1]))
-		return (1);
-	eval_data(check_file_data(argv[1], &data), &data);
-	construct_data(&data, argv);
-	hooks(&data);
-	mlx_loop(data.mlx.ptr);
+	rows = data->valid_file_data.map_rows;
+	cols = find_longest_line(data->map);
+	if (!is_map_enclosed(data->map, rows, cols))
+		return (-1);
 	return (0);
 }
 
+int	find_longest_line(char **map)
+{
+	int	longest;
+	int	i;
+
+	longest = 0;
+	i = 0;
+	while (map[i])
+	{
+		if (longest < (int)ft_strlen(map[i]))
+			longest = (int)ft_strlen(map[i]);
+		i++;
+	}
+	return (longest);
+}

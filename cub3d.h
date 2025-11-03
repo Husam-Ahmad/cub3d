@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 12:38:48 by jpluta            #+#    #+#             */
-/*   Updated: 2025/10/30 17:56:38 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/11/03 17:16:55 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,11 +119,13 @@ t_valid_file_data	init_valid_file_data(void);
 int					is_file_name_valid(char *file_name);
 
 /* main_utils/alg_map_boundaries.c */
-int					check_boundaries(t_data *data);
-int					find_longest_line(char **map);
 bool 				flood_fill(char **map, bool **visited,
 						int rows, int cols, int row, int col);
 bool				is_map_enclosed(char **map, int rows, int cols);
+
+/* main_utils/alg_map_utils.c */
+int					check_boundaries(t_data *data);
+int					find_longest_line(char **map);
 
 /* parsing/check_file_data.c */
 int					check_file_data(char *file, t_data *data);
@@ -142,6 +144,7 @@ void				parse_colours(char *line, t_colours *colours);
 int					test_if_openable_and_valid(char *path, int *status);
 char				*skip_empty_spaces(char *line);
 int					valid_data(t_valid_file_data valid_file_data);
+char				*helper(char *path);
 
 /* parsing/map_utils.c */
 int					find_map(char *line);

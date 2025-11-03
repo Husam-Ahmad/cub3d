@@ -7,6 +7,7 @@ SRC = \
 main.c \
 main_utils/alg_map_boundaries.c \
 main_utils/free_memory.c \
+main_utils/alg_map_utils.c \
 parsing/check_file_data.c \
 parsing/process_file_data.c \
 parsing/parsing_utils.c \
