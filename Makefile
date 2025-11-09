@@ -15,7 +15,12 @@ parsing/map_utils.c \
 construct/constructor.c \
 hooking/keyhook.c \
 hooking/movement.c \
-hooking/rotation.c 
+hooking/rotation.c \
+construct/draw.c \
+construct/step.c \
+construct/texture.c \
+construct/texture2.c \
+construct/player.c 
 
 
 OBJ = $(SRC:.c=.o)
