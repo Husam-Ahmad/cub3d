@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 12:38:48 by jpluta            #+#    #+#             */
-/*   Updated: 2025/11/03 17:16:55 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/11/09 12:44:38 by huahmad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,21 @@ typedef struct s_mlx
 	int		line_length;
 	int		endian;
 }	t_mlx;
+
+typedef struct s_draw
+{
+	int					y;
+	int					start;
+	int					end;
+	t_mlx				*tex;
+	int					*buf;
+	int					color;
+	double				step;
+	double				tex_pos;
+	double				wall_x;
+	int					tex_x;
+	int					tex_y;
+}						t_draw;
 
 typedef struct s_colours
 {
@@ -153,12 +168,6 @@ void				parse_map(char *line, t_data *data);
 /* construct/constructor.c */
 void				construct_data(t_data *data, char **argv);
 t_mlx				start_window(void);
-void				draw_scene(t_data *data);
-void				init_player(t_data *data);
-void				init_ray(t_data *data, int x);
-void				dda(t_data *data);
-void				calc_line(t_data *data);
-void				draw_vertical_line(t_data *data, int x);
 
 /* hooking/keyhook.c */
 int					handle_key(int keycode, t_data *data);
@@ -173,5 +182,35 @@ void				rotate_right(t_data *data);
 /* hooking/rotation.c */
 void				move_left(t_data *data);
 void				move_right(t_data *data);
+
+/* construct/texture2.c */
+void				*my_addr(t_mlx *dir);
+void				alloc_textures(t_data *data);
+void				check_img(void *img);
+void				tex_initialiser(t_data *data);
+
+/* construct/texture.c */
+t_mlx				*get_wall_texture(t_data *data);
+int					get_texel_color(t_mlx *tex, int tx, int ty);
+void				set_tex_params(t_data *d, t_draw *v);
+void				put_wall_pixel(t_data *d, t_draw *v, int x);
+
+/* construct/step.c */
+void				set_deltas(t_data *d);
+void				init_step_y(t_data *d);
+void				init_step_x(t_data *d);
+void				dda(t_data *data);
+
+/* construct/player.c */
+void				ifwore(t_data *d, char c);
+void				set_dir_plane(t_data *d, char c);
+int					set_player_if_needed(t_data *d, int x, int y);
+void				init_player(t_data *data);
+
+/*construct/draw.c*/
+void				draw_vertical_line(t_data *d, int x);
+void				calc_line(t_data *data);
+void				init_ray(t_data *data, int x);
+void				draw_scene(t_data *data);
 
 #endif
