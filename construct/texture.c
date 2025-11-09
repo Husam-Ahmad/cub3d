@@ -6,7 +6,7 @@
 /*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 12:35:55 by huahmad           #+#    #+#             */
-/*   Updated: 2025/11/09 12:36:55 by huahmad          ###   ########.fr       */
+/*   Updated: 2025/11/09 13:23:15 by huahmad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ void	set_tex_params(t_data *d, t_draw *v)
 		return ;
 	}
 	if (d->side == 0)
-		v->wall_x = d->posY + d->perp_wall_dist * d->ray_dir_y;
+		v->wall_x = d->posy + d->perp_wall_dist * d->ray_dir_y;
 	else
-		v->wall_x = d->posX + d->perp_wall_dist * d->ray_dir_x;
+		v->wall_x = d->posx + d->perp_wall_dist * d->ray_dir_x;
 	v->wall_x -= floor(v->wall_x);
 	v->tex_x = (int)(v->wall_x * (double)v->tex->width);
 	if ((d->side == 0 && d->ray_dir_x > 0) || (d->side == 1

@@ -3,23 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   free_memory.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 18:24:53 by jpluta            #+#    #+#             */
-/*   Updated: 2025/10/30 18:00:18 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/11/09 12:59:29 by huahmad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
+// missing or incorrect data if return_val == 0
+// map is not enclosed if return_val == -1
 void	eval_data(int return_val, t_data *data)
 {
-	if (return_val == 0) // missing or incorrect data
+	if (return_val == 0)
 	{
 		printf("Error incorrect data\n");
 		exit(1);
 	}
-	else if (return_val == -1) // map is enclosed
+	else if (return_val == -1)
 		free_and_exit(data);
 	else
 		return ;
@@ -54,7 +56,7 @@ void	free_textures(t_data *data)
 		free(data->path_to_the_north_texture);
 	if (data->path_to_the_west_texture)
 		free(data->path_to_the_west_texture);
-	if (data->path_to_the_south_texture)	
+	if (data->path_to_the_south_texture)
 		free(data->path_to_the_south_texture);
 }
 
@@ -76,6 +78,7 @@ int	is_file_name_valid(char *file_name)
 	else
 		return (1);
 }
+
 t_valid_file_data	init_valid_file_data(void)
 {
 	t_valid_file_data	default_data;
