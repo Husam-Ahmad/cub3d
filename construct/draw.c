@@ -6,7 +6,7 @@
 /*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 12:37:14 by huahmad           #+#    #+#             */
-/*   Updated: 2025/11/09 12:39:15 by huahmad          ###   ########.fr       */
+/*   Updated: 2025/11/09 13:25:35 by huahmad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ void	draw_vertical_line(t_data *d, int x)
 void	calc_line(t_data *data)
 {
 	if (data->side == 0)
-		data->perp_wall_dist = (data->map_x - data->posX + (1 - data->step_x)
+		data->perp_wall_dist = (data->map_x - data->posx + (1 - data->step_x)
 				/ 2) / data->ray_dir_x;
 	else
-		data->perp_wall_dist = (data->map_y - data->posY + (1 - data->step_y)
+		data->perp_wall_dist = (data->map_y - data->posy + (1 - data->step_y)
 				/ 2) / data->ray_dir_y;
 	data->line_height = (int)(SCREEN_HEIGHT / data->perp_wall_dist);
 	data->draw_start = -data->line_height / 2 + SCREEN_HEIGHT / 2;
@@ -56,10 +56,10 @@ void	init_ray(t_data *data, int x)
 {
 	const double	camera_x = 2.0 * x / (double)SCREEN_WIDTH - 1.0;
 
-	data->ray_dir_x = data->dirX + data->planeX * camera_x;
-	data->ray_dir_y = data->dirY + data->planeY * camera_x;
-	data->map_x = (int)data->posX;
-	data->map_y = (int)data->posY;
+	data->ray_dir_x = data->dirx + data->planex * camera_x;
+	data->ray_dir_y = data->diry + data->planey * camera_x;
+	data->map_x = (int)data->posx;
+	data->map_y = (int)data->posy;
 	set_deltas(data);
 	data->hit = 0;
 	init_step_x(data);

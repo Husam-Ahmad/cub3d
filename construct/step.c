@@ -6,7 +6,7 @@
 /*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 12:38:14 by huahmad           #+#    #+#             */
-/*   Updated: 2025/11/09 12:39:03 by huahmad          ###   ########.fr       */
+/*   Updated: 2025/11/09 13:23:15 by huahmad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ void	init_step_y(t_data *d)
 	if (d->ray_dir_y < 0)
 	{
 		d->step_y = -1;
-		d->side_dist_y = (d->posY - d->map_y) * d->delta_dist_y;
+		d->side_dist_y = (d->posy - d->map_y) * d->delta_dist_y;
 	}
 	else
 	{
 		d->step_y = 1;
-		d->side_dist_y = (d->map_y + 1.0 - d->posY) * d->delta_dist_y;
+		d->side_dist_y = (d->map_y + 1.0 - d->posy) * d->delta_dist_y;
 	}
 }
 
@@ -47,12 +47,12 @@ void	init_step_x(t_data *d)
 	if (d->ray_dir_x < 0)
 	{
 		d->step_x = -1;
-		d->side_dist_x = (d->posX - d->map_x) * d->delta_dist_x;
+		d->side_dist_x = (d->posx - d->map_x) * d->delta_dist_x;
 	}
 	else
 	{
 		d->step_x = 1;
-		d->side_dist_x = (d->map_x + 1.0 - d->posX) * d->delta_dist_x;
+		d->side_dist_x = (d->map_x + 1.0 - d->posx) * d->delta_dist_x;
 	}
 }
 

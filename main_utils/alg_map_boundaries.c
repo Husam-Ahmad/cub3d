@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   alg_map_boundaries.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 16:51:22 by jpluta            #+#    #+#             */
-/*   Updated: 2025/11/03 17:14:45 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/11/09 12:59:41 by huahmad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,50 +37,6 @@ bool	flood_fill(char **map, bool **visited, int rows, int cols, int row,
 	right = flood_fill(map, visited, rows, cols, row, col + 1);
 	return (up && down && left && right);
 }
-
-// bool	is_map_enclosed(char **map, int rows, int cols)
-// {
-// 	char	c;
-// 	int		start_row;
-// 	int		start_col;
-// 	bool	result;
-// 	bool	**visited;
-
-// 	start_row = -1;
-// 	start_col = -1;
-// 	for (int i = 0; i < rows; i++)
-// 	{
-// 		for (int j = 0; j < (int)ft_strlen(map[i]); j++)
-// 		{
-// 			c = map[i][j];
-// 			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
-// 			{
-// 				start_row = i;
-// 				start_col = j;
-// 				break ;
-// 			}
-// 		}
-// 		if (start_row != -1)
-// 			break ;
-// 	}
-// 	if (start_row == -1)
-// 	{
-// 		printf("Error: No player start position found.\n");
-// 		return (false);
-// 	}
-// 	visited = malloc(sizeof(bool *) * rows);
-// 	for (int i = 0; i < rows; i++)
-// 		visited[i] = calloc(cols, sizeof(bool));
-// 	result = flood_fill(map, visited, rows, cols, start_row, start_col);
-// 	for (int i = 0; i < rows; i++)
-// 		free(visited[i]);
-// 	free(visited);
-// 	if (!result)
-// 		printf("Map is NOT enclosed.\n");
-// 	else
-// 		printf("Map is fully enclosed.\n");
-// 	return (result);
-// }
 
 static bool	find_start_pos(char **map, int rows, int *sr, int *sc)
 {

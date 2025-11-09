@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 17:18:18 by jpluta            #+#    #+#             */
-/*   Updated: 2025/11/03 16:27:41 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/11/09 13:11:41 by huahmad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 int	valid_data(t_valid_file_data valid_file_data)
 {
-	if (!valid_file_data.NO_path_to_the_north_texture)
+	if (!valid_file_data.no_path_to_the_north_texture)
 		return (0);
-	else if (!valid_file_data.SO_path_to_the_south_texture)
+	else if (!valid_file_data.so_path_to_the_south_texture)
 		return (0);
-	else if (!valid_file_data.WE_path_to_the_west_texture)
+	else if (!valid_file_data.we_path_to_the_west_texture)
 		return (0);
-	else if (!valid_file_data.EA_path_to_the_east_texture)
+	else if (!valid_file_data.ea_path_to_the_east_texture)
 		return (0);
-	else if (!valid_file_data.F)
+	else if (!valid_file_data.f)
 		return (0);
-	else if (!valid_file_data.C)
+	else if (!valid_file_data.c)
 		return (0);
 	else if (valid_file_data.map_rows <= 2)
 		return (0);
