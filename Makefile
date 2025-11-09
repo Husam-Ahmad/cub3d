@@ -20,7 +20,8 @@ construct/draw.c \
 construct/step.c \
 construct/texture.c \
 construct/texture2.c \
-construct/player.c 
+construct/player.c \
+hooking/freeing.c
 
 
 OBJ = $(SRC:.c=.o)
