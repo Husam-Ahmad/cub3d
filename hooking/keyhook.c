@@ -6,23 +6,32 @@
 /*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 12:34:31 by huahmad           #+#    #+#             */
-/*   Updated: 2025/11/09 12:50:27 by huahmad          ###   ########.fr       */
+/*   Updated: 2025/11/09 15:12:25 by huahmad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static int	close_win(t_data *data)
+void	freethedata(t_data *data)
 {
+	free_tmlx(data->north);
+	free_tmlx(data->south);
+	free_tmlx(data->east);
+	free_tmlx(data->west);
+}
+
+int	close_win(t_data *data)
+{
+	freethedata(data);
+	free_and_exit(data);
 	(void)data;
-	exit(0);
 	return (0);
 }
 
 int	handle_key(int keycode, t_data *data)
 {
 	if (keycode == ESC_KEY)
-		exit(0);
+		close_win(data);
 	else if (keycode == W_KEY)
 		move_forward(data);
 	else if (keycode == S_KEY)

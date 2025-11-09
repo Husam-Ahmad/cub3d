@@ -6,7 +6,7 @@
 /*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 12:38:48 by jpluta            #+#    #+#             */
-/*   Updated: 2025/11/09 13:25:35 by huahmad          ###   ########.fr       */
+/*   Updated: 2025/11/09 14:12:28 by huahmad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,5 +213,10 @@ void					draw_vertical_line(t_data *d, int x);
 void					calc_line(t_data *data);
 void					init_ray(t_data *data, int x);
 void					draw_scene(t_data *data);
+
+
+
+void    free_tmlx(t_mlx *texture);
+
 
 #endif
