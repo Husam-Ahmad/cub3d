@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 17:18:18 by jpluta            #+#    #+#             */
-/*   Updated: 2025/11/11 17:05:18 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/11/11 17:45:35 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	test_if_openable_and_valid(char *path, int *status)
 		return (0);
 	if (*status != 0)
 	{
-		free(file_name); // we added this
+		free(file_name);
 		*status = -1;
 		return (0);
 	}
@@ -50,7 +50,6 @@ int	test_if_openable_and_valid(char *path, int *status)
 	if (fd == -1)
 	{
 		free(file_name);
-		perror("open failed");
 		return (0);
 	}
 	else

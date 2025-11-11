@@ -3,8 +3,7 @@
 # Keeps user leaks visible while silencing framework noise.
 #
 # Usage:
-#   valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes 
-#            --suppressions=valgrind-mlx.supp ./cub3d maps/test.cub
+#   valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=valgrind-mlx.supp ./cub3D maps/test.cub
 
 {
    X11_reachable_leaks
