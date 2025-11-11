@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file_data.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 17:14:46 by jpluta            #+#    #+#             */
-/*   Updated: 2025/11/09 13:11:20 by huahmad          ###   ########.fr       */
+/*   Updated: 2025/11/11 17:03:27 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	check_file_data(char *p_to_file, t_data *data)
 		line = get_next_line(file);
 	}
 	close(file);
-	if (valid_data(data->valid_file_data))
+	if (valid_data(data->valid_file_data) == 1)
 	{
 		if (process_file_data(data, p_to_file) == -1)
 			return (-1);

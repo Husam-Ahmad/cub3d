@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   process_file_data.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 17:13:45 by jpluta            #+#    #+#             */
-/*   Updated: 2025/11/09 13:12:22 by huahmad          ###   ########.fr       */
+/*   Updated: 2025/11/11 16:24:49 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+void	extract_data_parsing_3(char *line, t_data *data, char *map_line);
 
 int	process_file_data(t_data *data, char *p_to_file)
 {
@@ -103,33 +105,17 @@ void	extract_data_parsing_2(char *line, t_data *data, char *map_line)
 		trimmed_line = skip_empty_spaces(line);
 		parse_colours(trimmed_line, &data->c);
 	}
-	else if (line && valid_data(data->valid_file_data) == 1)
+	else
+		extract_data_parsing_3(line, data, map_line);
+}
+
+void	extract_data_parsing_3(char *line, t_data *data, char *map_line)
+{
+	if (line && valid_data(data->valid_file_data) == 1)
 	{
 		if (find_map(line) == 0)
 			return ;
 		else
 			parse_map(map_line, data);
 	}
-}
-
-void	parse_colours(char *line, t_colours *colour)
-{
-	int	i;
-
-	i = 0;
-	if (line[i] && ft_isdigit((int)(line[i])))
-		colour->r = ft_atoi(&line[i]);
-	while (line[i] && (line[i] >= '0' && line[i] <= '9'))
-		i++;
-	while (line[i] && (line[i] == ' ' || line[i] == ',' || line[i] == '\t'))
-		i++;
-	if (line[i] && ft_isdigit((int)(line[i])))
-		colour->g = ft_atoi(&line[i]);
-	while (line[i] && (line[i] >= '0' && line[i] <= '9'))
-		i++;
-	while (line[i] && (line[i] == ' ' || line[i] == ','
-			|| line[i] == '\t'))
-		i++;
-	if (line[i] && ft_isdigit((int)(line[i])))
-		colour->b = ft_atoi(&line[i]);
 }
