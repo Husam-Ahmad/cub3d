@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 17:18:18 by jpluta            #+#    #+#             */
-/*   Updated: 2025/11/09 13:11:41 by huahmad          ###   ########.fr       */
+/*   Updated: 2025/11/11 17:05:18 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 int	valid_data(t_valid_file_data valid_file_data)
 {
-	if (!valid_file_data.no_path_to_the_north_texture)
+	if (valid_file_data.no_path_to_the_north_texture != 1)
 		return (0);
-	else if (!valid_file_data.so_path_to_the_south_texture)
+	else if (valid_file_data.so_path_to_the_south_texture != 1)
 		return (0);
-	else if (!valid_file_data.we_path_to_the_west_texture)
+	else if (valid_file_data.we_path_to_the_west_texture != 1)
 		return (0);
-	else if (!valid_file_data.ea_path_to_the_east_texture)
+	else if (valid_file_data.ea_path_to_the_east_texture != 1)
 		return (0);
-	else if (!valid_file_data.f)
+	else if (valid_file_data.c != 1)
 		return (0);
-	else if (!valid_file_data.c)
+	else if (valid_file_data.f != 1)
 		return (0);
 	else if (valid_file_data.map_rows <= 2)
 		return (0);
@@ -42,6 +42,7 @@ int	test_if_openable_and_valid(char *path, int *status)
 		return (0);
 	if (*status != 0)
 	{
+		free(file_name); // we added this
 		*status = -1;
 		return (0);
 	}
