@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 12:38:48 by jpluta            #+#    #+#             */
-/*   Updated: 2025/11/09 14:12:28 by huahmad          ###   ########.fr       */
+/*   Updated: 2025/11/11 18:14:53 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,13 @@ typedef struct s_colours
 	int					b;
 }						t_colours;
 
+typedef struct s_rows_cols
+{
+	int					rows;
+	int					cols;
+	int					row;
+}						t_rows_cols;
+
 typedef struct s_valid_file_data
 {
 	int					no_path_to_the_north_texture;
@@ -133,8 +140,8 @@ t_valid_file_data		init_valid_file_data(void);
 int						is_file_name_valid(char *file_name);
 
 /* main_utils/alg_map_boundaries.c */
-bool					flood_fill(char **map, bool **visited, int rows,
-							int cols, int row, int col);
+bool					flood_fill(char **map, bool **visited,
+							t_rows_cols	*rows_and_cols, int col);
 bool					is_map_enclosed(char **map, int rows, int cols);
 
 /* main_utils/alg_map_utils.c */
@@ -214,9 +221,8 @@ void					calc_line(t_data *data);
 void					init_ray(t_data *data, int x);
 void					draw_scene(t_data *data);
 
-
-
-void    free_tmlx(t_mlx *texture);
-
+void					set_values(t_rows_cols *rows_and_cols, int rows,
+							int cols, int row);
+void					free_tmlx(t_mlx *texture);
 
 #endif

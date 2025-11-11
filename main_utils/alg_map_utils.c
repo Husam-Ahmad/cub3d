@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   alg_map_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 17:14:13 by jpluta            #+#    #+#             */
-/*   Updated: 2025/11/09 13:00:52 by huahmad          ###   ########.fr       */
+/*   Updated: 2025/11/11 18:14:14 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,11 @@ int	find_longest_line(char **map)
 		i++;
 	}
 	return (longest);
+}
+
+void	set_values(t_rows_cols *rows_and_cols, int rows, int cols, int row)
+{
+	rows_and_cols->rows = rows;
+	rows_and_cols->cols = cols;
+	rows_and_cols->row = row;
 }
