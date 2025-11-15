@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 17:13:45 by jpluta            #+#    #+#             */
-/*   Updated: 2025/11/11 16:24:49 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/11/15 13:31:34 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,17 +105,6 @@ void	extract_data_parsing_2(char *line, t_data *data, char *map_line)
 		trimmed_line = skip_empty_spaces(line);
 		parse_colours(trimmed_line, &data->c);
 	}
-	else
-		extract_data_parsing_3(line, data, map_line);
-}
-
-void	extract_data_parsing_3(char *line, t_data *data, char *map_line)
-{
-	if (line && valid_data(data->valid_file_data) == 1)
-	{
-		if (find_map(line) == 0)
-			return ;
-		else
-			parse_map(map_line, data);
-	}
+	else if (line)
+		parse_map(map_line, data);
 }
