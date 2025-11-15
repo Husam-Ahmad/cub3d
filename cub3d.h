@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 12:38:48 by jpluta            #+#    #+#             */
-/*   Updated: 2025/11/11 18:14:53 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/11/15 13:24:58 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,8 @@ bool					is_map_enclosed(char **map, int rows, int cols);
 /* main_utils/alg_map_utils.c */
 int						check_boundaries(t_data *data);
 int						find_longest_line(char **map);
+int						must_have_all_data_before_map(
+							t_valid_file_data valid_file_data);
 
 /* parsing/check_file_data.c */
 int						check_file_data(char *file, t_data *data);
