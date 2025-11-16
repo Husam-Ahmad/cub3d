@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   alg_map_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 17:14:13 by jpluta            #+#    #+#             */
-/*   Updated: 2025/11/15 13:23:54 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/11/16 12:49:33 by huahmad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,34 @@ int	must_have_all_data_before_map(t_valid_file_data valid_file_data)
 		return (0);
 	else
 		return (1);
+}
+
+bool	flood_fill(char **map, bool **visited, t_rows_cols *rows_and_cols,
+		int col)
+{
+	char c;
+	int current_row_len;
+	bool left;
+
+	if (rows_and_cols->row < 0 || rows_and_cols->row >= rows_and_cols->rows)
+		return (false);
+	current_row_len = ft_strlen(map[rows_and_cols->row]);
+	if (col < 0 || col >= current_row_len)
+		return (false);
+	if (map[rows_and_cols->row][col] == '1')
+		return (true);
+	if (visited[rows_and_cols->row][col])
+		return (true);
+	c = map[rows_and_cols->row][col];
+	if (c != '0' && c != 'N' && c != 'S' && c != 'E' && c != 'W' && c != ' ')
+		return (false);
+	visited[rows_and_cols->row][col] = true;
+	rows_and_cols->row -= 1;
+	flood_fill(map, visited, rows_and_cols, col);
+	rows_and_cols->row += 2;
+	flood_fill(map, visited, rows_and_cols, col);
+	rows_and_cols->row -= 1;
+	left = flood_fill(map, visited, rows_and_cols, col - 1);
+	flood_fill(map, visited, rows_and_cols, col + 1);
+	return (true);
 }

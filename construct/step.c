@@ -6,7 +6,7 @@
 /*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 12:38:14 by huahmad           #+#    #+#             */
-/*   Updated: 2025/11/09 13:23:15 by huahmad          ###   ########.fr       */
+/*   Updated: 2025/11/16 13:12:41 by huahmad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,23 +56,27 @@ void	init_step_x(t_data *d)
 	}
 }
 
+static int	dda_hit_check(t_data *data)
+{
+	int	row_len;
+
+	if (data->map_y < 0 || data->map_y >= data->valid_file_data.map_rows)
+		return (1);
+	row_len = ft_strlen(data->map[data->map_y]);
+	if (data->map_x < 0 || data->map_x >= row_len)
+		return (1);
+	if (data->map[data->map_y][data->map_x] == '1')
+		return (1);
+	return (0);
+}
+
 void	dda(t_data *data)
 {
 	while (!data->hit)
 	{
-		if (data->side_dist_x < data->side_dist_y)
-		{
-			data->side_dist_x += data->delta_dist_x;
-			data->map_x += data->step_x;
-			data->side = 0;
-		}
-		else
-		{
-			data->side_dist_y += data->delta_dist_y;
-			data->map_y += data->step_y;
-			data->side = 1;
-		}
-		if (data->map[data->map_y][data->map_x] == '1')
+		dda_step(data);
+		if (dda_hit_check(data))
 			data->hit = 1;
 	}
 }
+

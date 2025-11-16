@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 12:38:48 by jpluta            #+#    #+#             */
-/*   Updated: 2025/11/15 13:24:58 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/11/16 13:13:25 by huahmad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,7 @@ char					*helper(char *path);
 /* parsing/map_utils.c */
 int						find_map(char *line);
 void					parse_map(char *line, t_data *data);
+void					find_map_gaps(char **map);
 
 /* construct/constructor.c */
 void					construct_data(t_data *data, char **argv);
@@ -223,6 +224,7 @@ void					calc_line(t_data *data);
 void					init_ray(t_data *data, int x);
 void					draw_scene(t_data *data);
 
+void					dda_step(t_data *data);
 void					set_values(t_rows_cols *rows_and_cols, int rows,
 							int cols, int row);
 void					free_tmlx(t_mlx *texture);

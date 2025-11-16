@@ -6,11 +6,27 @@
 /*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 12:37:14 by huahmad           #+#    #+#             */
-/*   Updated: 2025/11/09 13:25:35 by huahmad          ###   ########.fr       */
+/*   Updated: 2025/11/16 13:12:57 by huahmad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+void	dda_step(t_data *data)
+{
+	if (data->side_dist_x < data->side_dist_y)
+	{
+		data->side_dist_x += data->delta_dist_x;
+		data->map_x += data->step_x;
+		data->side = 0;
+	}
+	else
+	{
+		data->side_dist_y += data->delta_dist_y;
+		data->map_y += data->step_y;
+		data->side = 1;
+	}
+}
 
 void	draw_vertical_line(t_data *d, int x)
 {

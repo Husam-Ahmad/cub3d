@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   process_file_data.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 17:13:45 by jpluta            #+#    #+#             */
-/*   Updated: 2025/11/15 13:31:34 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/11/16 11:40:52 by huahmad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-void	extract_data_parsing_3(char *line, t_data *data, char *map_line);
 
 int	process_file_data(t_data *data, char *p_to_file)
 {
@@ -34,10 +32,9 @@ int	process_file_data(t_data *data, char *p_to_file)
 	}
 	data->map[data->valid_file_data.map_rows] = NULL;
 	close(file);
+	find_map_gaps(data->map);
 	if (check_boundaries(data) == -1)
-	{
 		return (-1);
-	}
 	return (0);
 }
 
