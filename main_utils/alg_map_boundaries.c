@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   alg_map_boundaries.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 16:51:22 by jpluta            #+#    #+#             */
-/*   Updated: 2025/11/11 18:30:57 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/11/22 15:51:07 by huahmad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ bool	flood_fill(char **map, bool **visited, t_rows_cols *rows_and_cols,
 	visited[rows_and_cols->row][col] = true;
 	rows_and_cols->row -= 1;
 	up = flood_fill(map, visited, rows_and_cols, col);
-	rows_and_cols->row += 2;
+	rows_and_cols->row += 1;
 	down = flood_fill(map, visited, rows_and_cols, col);
 	rows_and_cols->row -= 1;
 	left = flood_fill(map, visited, rows_and_cols, col - 1);

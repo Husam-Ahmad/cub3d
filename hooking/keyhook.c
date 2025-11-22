@@ -6,7 +6,7 @@
 /*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 12:34:31 by huahmad           #+#    #+#             */
-/*   Updated: 2025/11/09 15:12:25 by huahmad          ###   ########.fr       */
+/*   Updated: 2025/11/22 15:52:42 by huahmad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ void	hooks(t_data *data)
 		ft_putstr_fd("hooks: data is NULL\n", 2);
 		return ;
 	}
-	fprintf(stderr, "hooks: mlx.ptr=%p mlx.win=%p\n", data->mlx.ptr,
-		data->mlx.win);
 	if (data->mlx.ptr && data->mlx.win)
 	{
 		mlx_key_hook(data->mlx.win, handle_key, data);

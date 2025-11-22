@@ -6,7 +6,7 @@
 /*   By: huahmad <huahmad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 12:37:14 by huahmad           #+#    #+#             */
-/*   Updated: 2025/11/09 13:25:35 by huahmad          ###   ########.fr       */
+/*   Updated: 2025/11/22 16:05:18 by huahmad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	draw_vertical_line(t_data *d, int x)
 	t_draw	v;
 
 	v.y = 0;
-	d->ceiling_color = 0x87CEEB;
+	d->ceiling_color = 0x87CEBB;
 	d->floor_color = 0x45138B;
 	v.start = d->draw_start;
 	v.end = d->draw_end;
